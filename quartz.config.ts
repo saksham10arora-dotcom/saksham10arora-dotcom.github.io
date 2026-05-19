@@ -16,7 +16,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "localhost:8080",
+    baseUrl: "saksham10arora-dotcom.github.io",
     ignorePatterns: [
       "private",
       "templates",
