@@ -6,13 +6,12 @@ Systems and quant engineer. I build low-latency tooling for markets and for AI.
 
 **Currently building**
 
-- llm-bench: LLM API latency benchmarker (p50/p95/p99)
 - lockfree-cpp: lock-free C++20 concurrent data structures
 
 **Selected work**
 
 - HFT matching engine: low-latency order matching, 2.7M ops/sec, p99 900ns, 3.31x over baseline
-- IMC Prosperity 4: global quant trading competition, top 0.5% of 18,800+ teams
+- IMC Prosperity 4: global quant trading competition, top 1% of 18,800+ teams
 
 ## Writing
 
