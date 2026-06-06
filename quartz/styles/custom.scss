@@ -29,15 +29,16 @@ body::after {
 
 // ── PAGE TITLE (△ Chimera) ─────────────────────────────────────
 .page-title {
-  font-size: 1.3rem;
-  letter-spacing: -0.02em;
+  font-size: 1.75rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.25rem;
 
   a {
-    background: linear-gradient(135deg, #d4b0ff 0%, #aa42ff 45%, #7b40ff 100%);
+    background: linear-gradient(135deg, #e2c8ff 0%, #aa42ff 40%, #7b40ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     transition: opacity 0.2s ease;
 
@@ -47,7 +48,7 @@ body::after {
   }
 }
 
-// ── TAG PILLS ─────────────────────────────────────────────────
+// ── TAG PILLS — base ──────────────────────────────────────────
 a.tag-link {
   display: inline-flex;
   align-items: center;
@@ -75,6 +76,45 @@ a.tag-link {
     transform: translateY(-1px);
     color: #d4a4ff;
   }
+}
+
+// ── TAG PILLS — per-tag colors ─────────────────────────────────
+// HFT / systems / performance → amber
+a.tag-link[href*="/tags/hft"],
+a.tag-link[href*="/tags/systems"],
+a.tag-link[href*="/tags/performance"],
+a.tag-link[href*="/tags/matching-engine"] {
+  border-color: rgba(251, 191, 36, 0.35);
+  background: rgba(251, 191, 36, 0.07);
+  color: #fbbf24;
+  &:hover { border-color: rgba(251, 191, 36, 0.6); background: rgba(251, 191, 36, 0.13); color: #fde68a; }
+}
+
+// C++ / cpp → sky blue
+a.tag-link[href*="/tags/cpp"],
+a.tag-link[href*="/tags/c"],
+a.tag-link[href*="/tags/hardware"] {
+  border-color: rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.07);
+  color: #38bdf8;
+  &:hover { border-color: rgba(56, 189, 248, 0.6); background: rgba(56, 189, 248, 0.13); color: #bae6fd; }
+}
+
+// wiki → gray-green
+a.tag-link[href*="/tags/wiki"] {
+  border-color: rgba(52, 211, 153, 0.3);
+  background: rgba(52, 211, 153, 0.06);
+  color: #34d399;
+  &:hover { border-color: rgba(52, 211, 153, 0.55); background: rgba(52, 211, 153, 0.12); color: #a7f3d0; }
+}
+
+// market microstructure / quant → teal
+a.tag-link[href*="/tags/market"],
+a.tag-link[href*="/tags/quant"] {
+  border-color: rgba(45, 212, 191, 0.3);
+  background: rgba(45, 212, 191, 0.06);
+  color: #2dd4bf;
+  &:hover { border-color: rgba(45, 212, 191, 0.55); background: rgba(45, 212, 191, 0.12); color: #99f6e4; }
 }
 
 // ── ARTICLE LINK UNDERLINE ANIMATION ──────────────────────────
@@ -143,6 +183,26 @@ code:not(pre code) {
   color: var(--gray) !important;
   opacity: 0.6;
   margin-bottom: 0.8rem !important;
+}
+
+// ── RECENT NOTES — link pop ────────────────────────────────────
+.recent-notes ul li a {
+  color: #aa42ff !important;
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: #d4a4ff !important;
+  }
+}
+
+.recent-notes ul li .meta {
+  font-size: 0.68rem;
+  color: var(--gray);
+  opacity: 0.5;
+  letter-spacing: 0.04em;
 }
 
 // ── STAGGERED ARTICLE / WIKI LIST ─────────────────────────────
