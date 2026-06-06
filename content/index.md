@@ -11,11 +11,11 @@ I compete in quant trading competitions, write low-latency C++20, and measure LL
 
 Mostly things I'm building, measuring, or trying to understand at the systems level.
 
-- **HFT and systems** - Teardowns of my matching engine, cache locality deep dives, lock-free data structures, and the performance decisions nobody writes about
-- **Quant** - Notes from IMC Prosperity 4, market microstructure, options math, and algo trading research
-- **AI infrastructure** - Benchmarking LLM APIs the way you'd benchmark an exchange: p99 latency, tail behavior, production reality vs marketing copy
-- **Wiki** - Reference articles I keep returning to: order book design, C++ memory model, cache hierarchies, concurrency primitives
-- **Reflections** - Occasional thoughts on building, competing, and what the numbers actually tell you
+- **HFT and systems** - Teardowns of my matching engine, cache locality deep dives, lock-free data structures. #HFT #Systems #Performance
+- **Quant** - Notes from IMC Prosperity 4, market microstructure, options math, algo trading research. #Quant
+- **AI infrastructure** - Benchmarking LLM APIs the way you'd benchmark an exchange: p99 latency, tail behavior, production reality. #AI #LLM
+- **Wiki** - Reference articles on order book design, C++ memory model, cache hierarchies, concurrency primitives. #Wiki
+- **Reflections** - Occasional thoughts on building, competing, and what the numbers actually tell you.
 
 ## Connect With Me
 
