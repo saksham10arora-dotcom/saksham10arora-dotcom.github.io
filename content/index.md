@@ -3,36 +3,20 @@ title: Chimera
 tags: [About]
 ---
 
-Systems and quant engineer. I build low-latency tooling for markets and for AI.
+Hey. I'm **Saksham Arora**, a systems and quant engineer. I build things where the interesting constraint is nanoseconds, not lines of code. Most of my work starts as a weird idea ("what if a live exchange ran inside a GitHub README?") and turns into something I can benchmark. You can learn more about me through my [portfolio](https://portfolio-silk-theta-96.vercel.app).
 
-**Currently building**
+I compete in quant trading competitions, write low-latency C++20, and measure LLM APIs the way you'd measure an order router.
 
-- lockfree-cpp: lock-free C++20 concurrent data structures
-- llm-bench: HFT-grade latency benchmarking for LLM APIs
+## What You'll Find Here
 
-**Selected work**
+Mostly things I'm building, measuring, or trying to understand at the systems level.
 
-- HFT matching engine: lock-free C++20 order matching, 2.7M ops/sec, p99 900ns, 3.31x over baseline
-- IMC Prosperity 4: global quant trading competition, top ~0.8% of 18,800+ teams
-- gitrade: live 3-ticker exchange running inside a GitHub README
-- qrscholes: Black-Scholes options pricer in a QR code, 731 bytes, no server
+- **HFT and systems** - Teardowns of my matching engine, cache locality deep dives, lock-free data structures, and the performance decisions nobody writes about
+- **Quant** - Notes from IMC Prosperity 4, market microstructure, options math, and algo trading research
+- **AI infrastructure** - Benchmarking LLM APIs the way you'd benchmark an exchange: p99 latency, tail behavior, production reality vs marketing copy
+- **Wiki** - Reference articles I keep returning to: order book design, C++ memory model, cache hierarchies, concurrency primitives
+- **Reflections** - Occasional thoughts on building, competing, and what the numbers actually tell you
 
-## Writing
+## Connect With Me
 
-[[blog/01_why_i_rebuilt_my_hft_engine|Why I Rebuilt My HFT Engine]]
-
-[[blog/02_smart_pointers_complete_guide|Smart Pointers: The Complete Guide]]
-
-## Wiki
-
-[[wiki/hft-matching-engine|HFT Matching Engine]]
-
-[[wiki/order-book-design|Order Book Design]]
-
-[[wiki/cache-locality|Cache Locality]]
-
-[[wiki/cpp-systems-programming|C++ Systems Programming]]
-
----
-
-[GitHub](https://github.com/saksham10arora-dotcom) · [LinkedIn](https://linkedin.com/in/saksham-arora10) · saksham10arora@gmail.com
+[GitHub](https://github.com/saksham10arora-dotcom) · [LinkedIn](https://linkedin.com/in/saksham-arora10) · [X](https://x.com/saksham10arora) · saksham10arora@gmail.com
