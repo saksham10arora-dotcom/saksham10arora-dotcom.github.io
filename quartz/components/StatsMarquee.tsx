@@ -29,11 +29,17 @@ const StatsMarquee: QuartzComponent = () => {
 StatsMarquee.afterDOMLoaded = `
 (function () {
   const CHARS = "△▲◇◈⌬⬡#$@!?/|~^ABCDEFabcdef0123456789";
+  let activeInterval = null;
 
   function scramble(el, target) {
+    // Cancel any in-progress scramble before starting a new one
+    if (activeInterval !== null) {
+      clearInterval(activeInterval);
+      activeInterval = null;
+    }
     let frame = 0;
     const total = target.length * 3;
-    const id = setInterval(() => {
+    activeInterval = setInterval(() => {
       el.textContent = target
         .split("")
         .map((ch, i) => {
@@ -45,7 +51,8 @@ StatsMarquee.afterDOMLoaded = `
       frame++;
       if (frame > total) {
         el.textContent = target;
-        clearInterval(id);
+        clearInterval(activeInterval);
+        activeInterval = null;
       }
     }, 35);
   }
@@ -53,11 +60,14 @@ StatsMarquee.afterDOMLoaded = `
   function runScramble() {
     const el = document.querySelector(".page-title a");
     if (!el) return;
-    const target = el.textContent || "";
-    scramble(el, target);
+    scramble(el, el.textContent || "");
   }
 
+  // spa.inline.ts fires "nav" at module top-level on initial load, which would
+  // double-fire alongside our direct runScramble() below. The activeInterval
+  // guard makes the second call cancel and restart cleanly instead of racing.
   document.addEventListener("nav", runScramble);
+  window.addCleanup(() => document.removeEventListener("nav", runScramble));
   runScramble();
 })();
 `

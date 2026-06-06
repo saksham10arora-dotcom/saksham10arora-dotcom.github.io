@@ -260,6 +260,15 @@ ul.section-ul > li,
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  ul.section-ul > li,
+  .recent-notes ul > li {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
 // ── H1 ARTICLE TITLE ──────────────────────────────────────────
 article h1 {
   font-size: 2rem;
@@ -346,12 +355,12 @@ blockquote {
 
   &::before {
     left: 0;
-    background: linear-gradient(to right, var(--light), transparent);
+    background: linear-gradient(to right, #000000, transparent);
   }
 
   &::after {
     right: 0;
-    background: linear-gradient(to left, var(--light), transparent);
+    background: linear-gradient(to left, #000000, transparent);
   }
 }
 
