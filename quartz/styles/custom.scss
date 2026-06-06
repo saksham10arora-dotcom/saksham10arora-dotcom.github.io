@@ -185,31 +185,30 @@ code:not(pre code) {
 }
 
 // ── GRAPH — force nodes/links visible on dark bg ──────────────
+// No overflow:hidden — it clips D3 force-layout nodes near edges.
+// No background — Quartz's .graph>.graph-outer sets background:none already.
 .graph-outer {
   border-radius: 8px;
-  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(9, 9, 11, 0.6);
   min-height: 200px;
 }
 
 .graph-outer svg {
   .link {
-    stroke: rgba(129, 140, 248, 0.2) !important;
+    stroke: rgba(129, 140, 248, 0.5) !important;
     stroke-width: 1px !important;
   }
 
   .node circle {
-    fill: rgba(129, 140, 248, 0.15) !important;
-    stroke: rgba(129, 140, 248, 0.5) !important;
+    fill: rgba(129, 140, 248, 0.5) !important;
+    stroke: rgba(129, 140, 248, 0.85) !important;
     stroke-width: 1.5px !important;
-    transition: all 0.2s ease;
   }
 
   .node.active circle,
   .node:hover circle {
-    fill: rgba(129, 140, 248, 0.35) !important;
-    stroke: #818cf8 !important;
+    fill: #818cf8 !important;
+    stroke: #c7d2fe !important;
     stroke-width: 2px !important;
   }
 
@@ -223,6 +222,14 @@ code:not(pre code) {
   .node:hover text {
     fill: #a5b4fc !important;
   }
+}
+
+// ── EXPLORER — force content visible, bypass hide-until-loaded ─
+// Quartz hides .explorer-content until JS removes .hide-until-loaded
+// from the sibling mobile button. Override so it's always visible.
+.explorer > .explorer-content {
+  display: flex !important;
+  flex-direction: column;
 }
 
 // ── SIDEBAR SECTION HEADERS ────────────────────────────────────
