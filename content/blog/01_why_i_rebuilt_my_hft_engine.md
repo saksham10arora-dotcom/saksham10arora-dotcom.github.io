@@ -188,5 +188,3 @@ The full source code is open: [GitHub - Simple-HFT-Engine](https://github.com/sa
 ---
 
 *If you found this useful, follow me for more deep dives into C++ systems programming, low-latency architecture, and high-performance computing.*
-
-#cpp #systems-programming #hft #performance #low-latency #data-structures
