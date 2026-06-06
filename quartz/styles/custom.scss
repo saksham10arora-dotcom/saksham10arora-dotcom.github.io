@@ -1,1 +1,73 @@
 @use "./base.scss";
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) rgba(0, 0, 0, 0.2);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: 10px;
+    min-height: 40px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+}
+
+.overflow {
+  li {
+    margin-bottom: 0.5rem;
+
+    li {
+      margin-bottom: 0.2rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.folder-container .folder-content li {
+  margin-bottom: 0.5rem;
+
+  li {
+    margin-bottom: 0.2rem;
+  }
+}
+
+.sidebar.right {
+  display: flex;
+  flex-direction: column;
+  height: auto !important;
+  position: sticky;
+  top: 0;
+  gap: 2rem;
+
+  .toc {
+    position: relative;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible;
+  }
+}
+
+#quartz-body .sidebar.right {
+  height: auto !important;
+  min-height: 100vh;
+}
