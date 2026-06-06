@@ -43,9 +43,9 @@ export const defaultContentPageLayout: PageLayout = {
   ],
   right: [
     Component.Graph(),
+    Component.RecentNotes({ title: "Trending Posts", limit: 4, showTags: false }),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
-    Component.RecentNotes({ title: "Recent Posts", limit: 5, showTags: true }),
   ],
 }
 
