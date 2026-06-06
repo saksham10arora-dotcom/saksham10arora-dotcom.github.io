@@ -1,5 +1,6 @@
 ---
-title: Saksham Arora
+title: Chimera
+tags: [About]
 ---
 
 Systems and quant engineer. I build low-latency tooling for markets and for AI.
