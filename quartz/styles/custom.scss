@@ -1,477 +1,139 @@
 @use "./base.scss";
 
-// ─────────────────────────────────────────────────────────────
-// CHIMERA — custom aesthetic layer
-// taste-skill: DESIGN_VARIANCE 8 | MOTION_INTENSITY 6 | DENSITY 4
-// Palette: zinc-950 base (#09090b) + indigo-400 accent (#818cf8)
-// Fonts: Space Grotesk / DM Sans / JetBrains Mono
-// ─────────────────────────────────────────────────────────────
-
-// ── GRAIN OVERLAY ─────────────────────────────────────────────
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 200px 200px;
-}
-
-// ── SIDEBAR ────────────────────────────────────────────────────
-// No backdrop-filter: it creates a compositing layer that prevents
-// the Explorer's hide-until-loaded JS reveal from firing correctly.
-.sidebar.left {
-  background: #09090b;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-// ── PAGE TITLE (△ Chimera) ─────────────────────────────────────
-.page-title {
-  font-size: 1.6rem;
-  letter-spacing: -0.04em;
-  margin-bottom: 0.25rem;
-
-  a {
-    background: linear-gradient(135deg, #e0e7ff 0%, #818cf8 55%, #4f46e5 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-}
-
 // ── TAG PILLS — base ──────────────────────────────────────────
 a.tag-link {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
-  border-radius: 3px;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  padding: 2px 9px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  border: 1px solid rgba(129, 140, 248, 0.35);
-  background: rgba(129, 140, 248, 0.08);
-  color: #a5b4fc;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.1);
+  color: #a78bfa;
   text-decoration: none;
-  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.18s ease;
   font-family: var(--codeFont);
 
   &::before {
     content: "#";
-    opacity: 0.45;
+    opacity: 0.5;
     margin-right: 1px;
   }
 
   &:hover {
-    border-color: rgba(129, 140, 248, 0.6);
-    background: rgba(129, 140, 248, 0.14);
-    transform: translateY(-1px);
-    color: #c7d2fe;
+    border-color: rgba(139, 92, 246, 0.6);
+    background: rgba(139, 92, 246, 0.16);
+    color: #c4b5fd;
   }
 }
 
-// ── TAG PILLS — per-tag colors ─────────────────────────────────
-// amber: HFT / systems / performance / matching
+// amber: HFT / systems / performance
 a.tag-link[href*="/tags/hft"],
 a.tag-link[href*="/tags/systems"],
 a.tag-link[href*="/tags/performance"],
 a.tag-link[href*="/tags/matching-engine"] {
-  border-color: rgba(251, 191, 36, 0.35);
-  background: rgba(251, 191, 36, 0.08);
+  border-color: rgba(251, 191, 36, 0.4);
+  background: rgba(251, 191, 36, 0.1);
   color: #fbbf24;
-  &:hover { border-color: rgba(251, 191, 36, 0.6); background: rgba(251, 191, 36, 0.15); color: #fde68a; }
+  &:hover { border-color: rgba(251, 191, 36, 0.65); background: rgba(251, 191, 36, 0.18); color: #fde68a; }
 }
 
-// sky blue: C++ / cpp / hardware
+// sky: C++ / cpp
 a.tag-link[href*="/tags/cpp"],
 a.tag-link[href*="/tags/hardware"],
 a.tag-link[href$="/tags/c"] {
-  border-color: rgba(56, 189, 248, 0.35);
-  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.1);
   color: #38bdf8;
-  &:hover { border-color: rgba(56, 189, 248, 0.6); background: rgba(56, 189, 248, 0.15); color: #bae6fd; }
+  &:hover { border-color: rgba(56, 189, 248, 0.65); background: rgba(56, 189, 248, 0.18); color: #bae6fd; }
 }
 
 // emerald: AI / wiki
 a.tag-link[href*="/tags/ai"],
 a.tag-link[href*="/tags/wiki"] {
-  border-color: rgba(52, 211, 153, 0.35);
-  background: rgba(52, 211, 153, 0.08);
+  border-color: rgba(52, 211, 153, 0.4);
+  background: rgba(52, 211, 153, 0.1);
   color: #34d399;
-  &:hover { border-color: rgba(52, 211, 153, 0.6); background: rgba(52, 211, 153, 0.15); color: #a7f3d0; }
+  &:hover { border-color: rgba(52, 211, 153, 0.65); background: rgba(52, 211, 153, 0.18); color: #a7f3d0; }
 }
 
 // cyan: LLM
 a.tag-link[href*="/tags/llm"] {
-  border-color: rgba(6, 182, 212, 0.35);
-  background: rgba(6, 182, 212, 0.08);
+  border-color: rgba(6, 182, 212, 0.4);
+  background: rgba(6, 182, 212, 0.1);
   color: #22d3ee;
-  &:hover { border-color: rgba(6, 182, 212, 0.6); background: rgba(6, 182, 212, 0.15); color: #a5f3fc; }
+  &:hover { border-color: rgba(6, 182, 212, 0.65); background: rgba(6, 182, 212, 0.18); color: #a5f3fc; }
 }
 
-// teal: market / quant
+// teal: quant / market
 a.tag-link[href*="/tags/market"],
 a.tag-link[href*="/tags/quant"] {
-  border-color: rgba(45, 212, 191, 0.35);
-  background: rgba(45, 212, 191, 0.08);
+  border-color: rgba(45, 212, 191, 0.4);
+  background: rgba(45, 212, 191, 0.1);
   color: #2dd4bf;
-  &:hover { border-color: rgba(45, 212, 191, 0.6); background: rgba(45, 212, 191, 0.15); color: #99f6e4; }
+  &:hover { border-color: rgba(45, 212, 191, 0.65); background: rgba(45, 212, 191, 0.18); color: #99f6e4; }
 }
 
-// ── ARTICLE LINK UNDERLINE ANIMATION ──────────────────────────
-article a:not(.tag-link):not([class]) {
-  position: relative;
-  text-decoration: none;
-  color: var(--secondary);
-  background-image: linear-gradient(var(--secondary), var(--secondary));
-  background-size: 0 1px;
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  transition: background-size 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              color 0.2s ease;
-
-  &:hover {
-    background-size: 100% 1px;
-    color: #c7d2fe;
-  }
-}
-
-// ── CODE BLOCKS — TERMINAL AESTHETIC ──────────────────────────
-pre {
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
-  border-radius: 8px !important;
-  background: #0d0d10 !important;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    display: block;
-    height: 28px;
-    background: rgba(255, 255, 255, 0.025);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    margin-bottom: 0.75rem;
-    background-image: radial-gradient(circle 4px at 14px 14px, #ff5f57 0%, #ff5f57 100%),
-                      radial-gradient(circle 4px at 30px 14px, #febc2e 0%, #febc2e 100%),
-                      radial-gradient(circle 4px at 46px 14px, #28c840 0%, #28c840 100%);
-    background-repeat: no-repeat;
-    opacity: 0.5;
-  }
-
-  code {
-    background: transparent !important;
-    font-size: 0.83em !important;
-    line-height: 1.65 !important;
-  }
-}
-
-code:not(pre code) {
-  background: rgba(129, 140, 248, 0.08) !important;
-  border: 1px solid rgba(129, 140, 248, 0.18) !important;
-  border-radius: 3px !important;
-  color: #a5b4fc !important;
-  padding: 1px 5px !important;
-  font-size: 0.82em !important;
-}
-
-// ── GRAPH — force nodes/links visible on dark bg ──────────────
-// No overflow:hidden — it clips D3 force-layout nodes near edges.
-// No background — Quartz's .graph>.graph-outer sets background:none already.
-.graph-outer {
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  min-height: 200px;
-}
-
+// ── GRAPH — make nodes visible on dark background ─────────────
 .graph-outer svg {
   .link {
-    stroke: rgba(129, 140, 248, 0.5) !important;
+    stroke: rgba(139, 92, 246, 0.4) !important;
     stroke-width: 1px !important;
   }
 
   .node circle {
-    fill: rgba(129, 140, 248, 0.5) !important;
-    stroke: rgba(129, 140, 248, 0.85) !important;
+    fill: rgba(139, 92, 246, 0.5) !important;
+    stroke: rgba(139, 92, 246, 0.9) !important;
     stroke-width: 1.5px !important;
   }
 
   .node.active circle,
   .node:hover circle {
-    fill: #818cf8 !important;
-    stroke: #c7d2fe !important;
-    stroke-width: 2px !important;
+    fill: #a78bfa !important;
+    stroke: #c4b5fd !important;
   }
 
   .node text {
-    fill: #71717a !important;
+    fill: #6b7280 !important;
     font-size: 0.65rem !important;
-    font-family: var(--codeFont) !important;
   }
 
   .node.active text,
   .node:hover text {
-    fill: #a5b4fc !important;
+    fill: #c4b5fd !important;
   }
 }
 
-// ── EXPLORER — force content visible, bypass hide-until-loaded ─
-// Quartz hides .explorer-content until JS removes .hide-until-loaded
-// from the sibling mobile button. Override so it's always visible.
-.explorer > .explorer-content {
-  display: flex !important;
-  flex-direction: column;
-}
-
-// ── SIDEBAR SECTION HEADERS ────────────────────────────────────
-.graph > h3,
-.toc > h3,
-.backlinks > h3,
-.recent-notes > h3 {
-  font-size: 0.6rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.16em !important;
-  text-transform: uppercase !important;
-  color: var(--gray) !important;
-  opacity: 0.5;
-  margin-bottom: 0.9rem !important;
-}
-
-// ── RECENT NOTES — Trending Posts style ───────────────────────
-.recent-notes ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
-
-.recent-notes ul li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  padding-bottom: 0.9rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-
-  &:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-}
-
+// ── RECENT NOTES sidebar ──────────────────────────────────────
 .recent-notes ul li a {
-  color: #818cf8 !important;
-  font-weight: 600;
-  font-size: 0.92rem;
-  line-height: 1.35;
+  color: #8b5cf6 !important;
+  font-weight: 500;
+  font-size: 0.85rem;
   text-decoration: none;
-  transition: color 0.15s ease;
-  letter-spacing: -0.01em;
 
   &:hover {
-    color: #c7d2fe !important;
+    color: #c4b5fd !important;
   }
 }
 
-.recent-notes ul li .meta {
-  font-size: 0.62rem;
-  color: var(--gray);
-  opacity: 0.4;
-  letter-spacing: 0.07em;
-  font-family: var(--codeFont);
-  text-transform: uppercase;
-}
-
-// ── STAGGERED ARTICLE / WIKI LIST ─────────────────────────────
-ul.section-ul > li,
-.recent-notes ul > li {
-  opacity: 0;
-  transform: translateY(6px);
-  animation: fadeUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-
-  @for $i from 1 through 20 {
-    &:nth-child(#{$i}) {
-      animation-delay: #{$i * 0.045}s;
-    }
-  }
-}
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  ul.section-ul > li,
-  .recent-notes ul > li {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-}
-
-// ── TYPOGRAPHY ────────────────────────────────────────────────
-article h1 {
-  font-size: 1.9rem;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
+// ── PAGE TITLE ────────────────────────────────────────────────
+.page-title a {
+  background: linear-gradient(135deg, #c4b5fd 0%, #8b5cf6 50%, #6d28d9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-weight: 700;
-  color: var(--dark);
+  text-decoration: none;
 }
 
-article h2 {
-  font-size: 1.25rem;
-  letter-spacing: -0.025em;
-  font-weight: 600;
-  margin-top: 2.5rem;
-  margin-bottom: 0.75rem;
-  color: var(--dark);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding-bottom: 0.4rem;
-}
-
-article h3 {
-  font-size: 1.05rem;
-  letter-spacing: -0.015em;
-  font-weight: 600;
-  margin-top: 1.75rem;
-}
-
-article p {
-  line-height: 1.75;
-  color: var(--darkgray);
-}
-
-// ── CONTENT META ──────────────────────────────────────────────
-p.content-meta {
-  font-size: 0.68rem !important;
-  letter-spacing: 0.09em;
-  color: var(--gray) !important;
-  opacity: 0.5;
-  text-transform: uppercase;
-  font-family: var(--codeFont) !important;
-}
-
-// ── SEARCH BAR ────────────────────────────────────────────────
-#search-bar {
-  background: rgba(255, 255, 255, 0.025) !important;
-  border: 1px solid rgba(255, 255, 255, 0.07) !important;
-  border-radius: 5px !important;
-  font-size: 0.78rem !important;
-  transition: border-color 0.2s ease !important;
-  color: var(--darkgray) !important;
-
-  &:focus {
-    outline: none !important;
-    border-color: rgba(129, 140, 248, 0.4) !important;
-  }
-}
-
-// ── FOOTER ────────────────────────────────────────────────────
-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-
-  a {
-    color: var(--gray) !important;
-    transition: color 0.2s ease;
-    text-decoration: none;
-
-    &:hover {
-      color: var(--secondary) !important;
-    }
-  }
-}
-
-// ── BLOCKQUOTE ────────────────────────────────────────────────
-blockquote {
-  border-left: 2px solid rgba(129, 140, 248, 0.45) !important;
-  background: rgba(129, 140, 248, 0.04) !important;
-  border-radius: 0 6px 6px 0 !important;
-  padding: 0.75rem 1.25rem !important;
-  margin: 1.5rem 0 !important;
-
-  p {
-    color: var(--darkgray) !important;
-    font-style: normal !important;
-    opacity: 0.8;
-    line-height: 1.7;
-  }
-}
-
-// ── STATS MARQUEE STRIP ────────────────────────────────────────
-.stats-marquee-wrap {
-  overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  background: rgba(9, 9, 11, 0.5);
-  padding: 6px 0;
-  width: 100%;
-  position: relative;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 80px;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  &::before {
-    left: 0;
-    background: linear-gradient(to right, #09090b, transparent);
-  }
-
-  &::after {
-    right: 0;
-    background: linear-gradient(to left, #09090b, transparent);
-  }
-}
-
-.stats-marquee-track {
-  display: flex;
-  gap: 0;
-  animation: marqueeScroll 28s linear infinite;
-  width: max-content;
-  will-change: transform;
-}
-
-.stats-marquee-item {
-  display: inline-flex;
-  align-items: center;
-  padding: 0 2.5rem;
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gray);
-  opacity: 0.45;
-  white-space: nowrap;
-  font-family: var(--codeFont);
-
-  &::after {
-    content: "·";
-    margin-left: 2.5rem;
-    opacity: 0.3;
-  }
-}
-
-@keyframes marqueeScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+// ── INLINE CODE ───────────────────────────────────────────────
+code:not(pre code) {
+  background: rgba(139, 92, 246, 0.1) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  border-radius: 4px !important;
+  color: #a78bfa !important;
+  padding: 1px 5px !important;
 }
