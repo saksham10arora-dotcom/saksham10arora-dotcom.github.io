@@ -26,6 +26,12 @@ Systems and quant engineer. I build low-latency tooling for markets and for AI.
 
 [[wiki/hft-matching-engine|HFT Matching Engine]]
 
+[[wiki/order-book-design|Order Book Design]]
+
+[[wiki/cache-locality|Cache Locality]]
+
+[[wiki/cpp-systems-programming|C++ Systems Programming]]
+
 ---
 
 [GitHub](https://github.com/saksham10arora-dotcom) · [LinkedIn](https://linkedin.com/in/saksham-arora10) · saksham10arora@gmail.com
