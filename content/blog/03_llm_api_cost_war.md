@@ -12,7 +12,7 @@ date: 2026-06-06
 
 ## The Price Floor Just Got Floored Again
 
-GPT-4 launched at $30 per million input tokens. Two years later the same capability costs less than $1. Flash models are fractions of a cent. This week another round of cuts across the major providers.
+GPT-4 launched at \$30 per million input tokens. Two years later the same capability costs less than \$1. Flash models are fractions of a cent. This week another round of cuts across the major providers.
 
 The pattern is textbook commoditization. Compute gets cheaper. Competition forces margins down. The product that was expensive becomes infrastructure.
 
