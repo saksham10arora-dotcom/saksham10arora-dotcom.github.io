@@ -1,1 +1,125 @@
 @use "./base.scss";
+
+:root {
+  --bodyFont: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --headerFont: var(--codeFont);
+}
+
+.tags a.internal.tag-link,
+a.internal.tag-link[href*="tags/"] {
+  --tag-accent: var(--secondary);
+  display: inline-block;
+  margin: 0;
+  padding: 0.24rem 0.56rem;
+  border: 1px solid color-mix(in srgb, var(--tag-accent) 28%, var(--lightgray));
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--tag-accent) 12%, var(--light));
+  color: var(--tag-accent);
+  font-family: var(--codeFont);
+  font-size: 0.74rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.tags a.internal.tag-link:hover,
+a.internal.tag-link[href*="tags/"]:hover {
+  color: var(--tag-accent);
+  border-color: color-mix(in srgb, var(--tag-accent) 40%, var(--lightgray));
+  background-color: color-mix(in srgb, var(--tag-accent) 16%, var(--light));
+}
+
+.tags a.internal.tag-link[href*="tags/hft"],
+.tags a.internal.tag-link[href*="tags/systems"],
+a.internal.tag-link[href*="tags/hft"],
+a.internal.tag-link[href*="tags/systems"] {
+  --tag-accent: hsl(from var(--secondary) 38deg s l);
+}
+
+.tags a.internal.tag-link[href*="tags/cpp"],
+a.internal.tag-link[href*="tags/cpp"] {
+  --tag-accent: hsl(from var(--secondary) 205deg s l);
+}
+
+.tags a.internal.tag-link[href*="tags/ai"],
+a.internal.tag-link[href*="tags/ai"] {
+  --tag-accent: hsl(from var(--secondary) 148deg s l);
+}
+
+.tags a.internal.tag-link[href*="tags/llm"],
+a.internal.tag-link[href*="tags/llm"] {
+  --tag-accent: hsl(from var(--secondary) 188deg s l);
+}
+
+#page-title,
+.page-title,
+h1.page-title,
+.article-title {
+  font-family: var(--codeFont);
+  letter-spacing: 0.04em;
+}
+
+#page-title a,
+.page-title a,
+h1.page-title a,
+.article-title {
+  display: inline-block;
+  padding-left: 0.75rem;
+  border-left: 2px solid color-mix(in srgb, var(--secondary) 72%, var(--lightgray));
+}
+
+code:not(pre code) {
+  border: 1px solid color-mix(in srgb, var(--secondary) 24%, var(--lightgray));
+  border-radius: 3px;
+  background-color: color-mix(in srgb, var(--highlight) 80%, var(--light));
+  color: var(--secondary);
+  font-family: var(--codeFont);
+  font-weight: 400;
+  padding: 0.08rem 0.3rem;
+}
+
+.graph .graph-outer,
+.graph .global-graph-container {
+  border-color: color-mix(in srgb, var(--secondary) 22%, var(--lightgray));
+  background-color: color-mix(in srgb, var(--light) 97%, var(--secondary));
+}
+
+.graph .graph-outer canvas,
+.graph .global-graph-container canvas {
+  filter: saturate(1.08) contrast(1.05);
+}
+
+.graph .global-graph-icon {
+  color: var(--secondary);
+}
+
+blockquote {
+  border-left-color: var(--secondary);
+  border-radius: 0 6px 6px 0;
+  background-color: color-mix(in srgb, var(--highlight) 78%, var(--light));
+  padding: 0.85rem 1rem;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--secondary) 22%, var(--light));
+  color: var(--dark);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--secondary) 38%, var(--gray)) var(--light);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--light);
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 2px solid var(--light);
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--secondary) 38%, var(--gray));
+}
