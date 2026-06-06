@@ -1,3 +1,295 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// ─────────────────────────────────────────────────────────────
+// CHIMERA — custom aesthetic layer
+// taste-skill: DESIGN_VARIANCE 8 | MOTION_INTENSITY 6 | DENSITY 4
+// ─────────────────────────────────────────────────────────────
+
+// ── GRAIN OVERLAY ─────────────────────────────────────────────
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+// ── SIDEBAR GLASSMORPHISM ──────────────────────────────────────
+.sidebar.left {
+  background: rgba(13, 11, 20, 0.55);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: inset -1px 0 0 rgba(170, 66, 255, 0.04);
+}
+
+// ── PAGE TITLE (△ Chimera) ─────────────────────────────────────
+.page-title {
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+
+  a {
+    background: linear-gradient(135deg, #d4b0ff 0%, #aa42ff 45%, #7b40ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}
+
+// ── TAG PILLS ─────────────────────────────────────────────────
+a.tag-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid rgba(170, 66, 255, 0.3);
+  background: rgba(170, 66, 255, 0.07);
+  color: #c084fc;
+  text-decoration: none;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &::before {
+    content: "#";
+    opacity: 0.5;
+    margin-right: 1px;
+  }
+
+  &:hover {
+    border-color: rgba(170, 66, 255, 0.55);
+    background: rgba(170, 66, 255, 0.14);
+    transform: translateY(-1px);
+    color: #d4a4ff;
+  }
+}
+
+// ── ARTICLE LINK UNDERLINE ANIMATION ──────────────────────────
+article a:not(.tag-link):not([class]) {
+  position: relative;
+  text-decoration: none;
+  color: var(--secondary);
+  background-image: linear-gradient(var(--secondary), var(--secondary));
+  background-size: 0 1px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.2s ease;
+
+  &:hover {
+    background-size: 100% 1px;
+    color: #c084fc;
+  }
+}
+
+// ── CODE BLOCKS — TERMINAL AESTHETIC ──────────────────────────
+pre {
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 8px !important;
+  background: #080611 !important;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    display: block;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 0.75rem;
+    background-image: radial-gradient(circle 4px at 14px 14px, #ff5f57 0%, #ff5f57 100%),
+                      radial-gradient(circle 4px at 30px 14px, #febc2e 0%, #febc2e 100%),
+                      radial-gradient(circle 4px at 46px 14px, #28c840 0%, #28c840 100%);
+    background-repeat: no-repeat;
+    opacity: 0.5;
+  }
+
+  code {
+    background: transparent !important;
+  }
+}
+
+code:not(pre code) {
+  background: rgba(170, 66, 255, 0.1) !important;
+  border: 1px solid rgba(170, 66, 255, 0.2) !important;
+  border-radius: 4px !important;
+  color: #c084fc !important;
+  padding: 1px 5px !important;
+  font-size: 0.85em !important;
+}
+
+// ── SIDEBAR SECTION HEADERS ────────────────────────────────────
+.graph > h3,
+.toc > h3,
+.backlinks > h3,
+.recent-notes > h3 {
+  font-size: 0.65rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--gray) !important;
+  opacity: 0.6;
+  margin-bottom: 0.8rem !important;
+}
+
+// ── STAGGERED ARTICLE / WIKI LIST ─────────────────────────────
+ul.section-ul > li,
+.recent-notes ul > li {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.045}s;
+    }
+  }
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── H1 ARTICLE TITLE ──────────────────────────────────────────
+article h1 {
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+// ── CONTENT META ──────────────────────────────────────────────
+p.content-meta {
+  font-size: 0.7rem !important;
+  letter-spacing: 0.08em;
+  color: var(--gray) !important;
+  opacity: 0.55;
+  text-transform: uppercase;
+}
+
+// ── SEARCH BAR ────────────────────────────────────────────────
+#search-bar {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 6px !important;
+  font-size: 0.8rem !important;
+  transition: border-color 0.2s ease !important;
+  color: var(--darkgray) !important;
+
+  &:focus {
+    outline: none !important;
+    border-color: rgba(170, 66, 255, 0.45) !important;
+  }
+}
+
+// ── FOOTER ────────────────────────────────────────────────────
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+
+  a {
+    color: var(--gray) !important;
+    transition: color 0.2s ease;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--secondary) !important;
+    }
+  }
+}
+
+// ── BLOCKQUOTE ────────────────────────────────────────────────
+blockquote {
+  border-left: 2px solid rgba(170, 66, 255, 0.5) !important;
+  background: rgba(170, 66, 255, 0.04) !important;
+  border-radius: 0 6px 6px 0 !important;
+  padding: 0.75rem 1rem !important;
+  margin: 1.5rem 0 !important;
+
+  p {
+    color: var(--darkgray) !important;
+    font-style: normal !important;
+    opacity: 0.85;
+  }
+}
+
+// ── STATS MARQUEE STRIP ────────────────────────────────────────
+.stats-marquee-wrap {
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(13, 11, 20, 0.4);
+  padding: 7px 0;
+  width: 100%;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, var(--light), transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, var(--light), transparent);
+  }
+}
+
+.stats-marquee-track {
+  display: flex;
+  gap: 0;
+  animation: marqueeScroll 28s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+.stats-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 2.5rem;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  opacity: 0.5;
+  white-space: nowrap;
+  font-family: var(--codeFont);
+
+  &::after {
+    content: "·";
+    margin-left: 2.5rem;
+    opacity: 0.35;
+  }
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
