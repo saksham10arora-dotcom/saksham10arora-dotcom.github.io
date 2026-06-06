@@ -31,6 +31,7 @@ export const defaultContentPageLayout: PageLayout = {
   right: [
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
+    Component.RecentNotes({ title: "Trending Posts", limit: 4, showTags: false }),
     Component.Backlinks(),
   ],
 }
