@@ -20,7 +20,7 @@ body::after {
 
 // ── SIDEBAR GLASSMORPHISM ──────────────────────────────────────
 .sidebar.left {
-  background: rgba(13, 11, 20, 0.55);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(14px) saturate(1.4);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
   border-right: 1px solid rgba(255, 255, 255, 0.04);
@@ -148,7 +148,7 @@ article a:not(.tag-link):not([class]) {
 pre {
   border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-radius: 8px !important;
-  background: #080611 !important;
+  background: #0a0a0a !important;
   position: relative;
   overflow: hidden;
 
@@ -328,7 +328,7 @@ blockquote {
 .stats-marquee-wrap {
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  background: rgba(13, 11, 20, 0.4);
+  background: rgba(0, 0, 0, 0.4);
   padding: 7px 0;
   width: 100%;
   position: relative;
