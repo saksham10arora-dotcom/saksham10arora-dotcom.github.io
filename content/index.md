@@ -7,6 +7,12 @@ Hey. I'm **Saksham Arora**, a systems and quant engineer. I build things where t
 
 I compete in quant trading competitions, write low-latency C++20, and measure LLM APIs the way you'd measure an order router.
 
+## Posts
+
+- [[blog/01_why_i_rebuilt_my_hft_engine|Why I Rebuilt My HFT Matching Engine From Scratch]] #HFT #Systems #Performance
+- [[blog/03_llm_api_cost_war|The LLM Cost War Is Over. Latency Won.]] #AI #LLM
+- [[blog/02_smart_pointers_complete_guide|Smart Pointers in C++]] #cpp #Systems
+
 ## What You'll Find Here
 
 Mostly things I'm building, measuring, or trying to understand at the systems level.

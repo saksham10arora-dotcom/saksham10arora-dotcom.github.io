@@ -20,13 +20,12 @@ body::after {
   background-size: 200px 200px;
 }
 
-// ── SIDEBAR GLASSMORPHISM ──────────────────────────────────────
+// ── SIDEBAR ────────────────────────────────────────────────────
+// No backdrop-filter: it creates a compositing layer that prevents
+// the Explorer's hide-until-loaded JS reveal from firing correctly.
 .sidebar.left {
-  background: rgba(9, 9, 11, 0.7);
-  backdrop-filter: blur(16px) saturate(1.5);
-  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  background: #09090b;
   border-right: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: inset -1px 0 0 rgba(129, 140, 248, 0.05);
 }
 
 // ── PAGE TITLE (△ Chimera) ─────────────────────────────────────
