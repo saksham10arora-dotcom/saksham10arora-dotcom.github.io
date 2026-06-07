@@ -1,5 +1,23 @@
 @use "./base.scss";
+@use "./variables.scss" as *;
 
+/* =========================================================================
+   CHIMERA — custom theme layer
+   Base: zinc-950 dark / cream light. Accent: violet (--secondary).
+   Rule: only override safe surfaces. Never touch .explorer-content display,
+   never add backdrop-filter to .sidebar (both broke Quartz JS/scroll before).
+   ========================================================================= */
+
+:root {
+  --edge: color-mix(in srgb, var(--secondary) 22%, transparent);
+  --edge-soft: color-mix(in srgb, var(--gray) 28%, transparent);
+  --tint: color-mix(in srgb, var(--secondary) 6%, transparent);
+  --tint-strong: color-mix(in srgb, var(--secondary) 12%, transparent);
+  --shadow-tinted: 0 14px 40px -20px color-mix(in srgb, var(--secondary) 40%, transparent);
+  --reading-measure: 46rem;
+}
+
+/* ---------- scrollbar ---------- */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--secondary) rgba(0, 0, 0, 0.2);
@@ -8,48 +26,281 @@
     width: 8px;
     height: 8px;
   }
-
   &::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
   }
-
   &::-webkit-scrollbar-thumb {
     background: var(--secondary);
     border-radius: 10px;
     min-height: 40px;
-
     &:hover {
       opacity: 0.8;
     }
   }
-
   &::-webkit-scrollbar-button {
     display: none;
   }
 }
 
-.overflow {
-  li {
-    margin-bottom: 0.5rem;
+/* ---------- selection ---------- */
+::selection {
+  background: color-mix(in srgb, var(--secondary) 32%, transparent);
+  color: var(--dark);
+}
 
-    li {
-      margin-bottom: 0.2rem;
-    }
+/* =========================================================================
+   READING EXPERIENCE — the article
+   ========================================================================= */
 
-    &:last-child {
-      margin-bottom: 0;
+.center > article {
+  /* comfortable measure, content breathes */
+  & > p,
+  & > ul,
+  & > ol,
+  & > blockquote,
+  & > h1,
+  & > h2,
+  & > h3,
+  & > h4,
+  & > .table-container,
+  & > figure[data-rehype-pretty-code-figure] {
+    max-width: var(--reading-measure);
+  }
+
+  & p {
+    line-height: 1.75rem;
+    letter-spacing: 0.002em;
+  }
+
+  /* lead paragraph: first paragraph after the H1 reads larger */
+  & > p:first-of-type {
+    font-size: 1.08rem;
+    line-height: 1.85rem;
+    color: var(--darkgray);
+  }
+}
+
+/* article title — confident, tight, gradient brand mark */
+.article-title {
+  font-size: clamp(1.9rem, 1.4rem + 2vw, 2.7rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
+  background: linear-gradient(
+    100deg,
+    var(--dark) 0%,
+    var(--dark) 55%,
+    var(--tertiary) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* heading hierarchy — accent ticks on H2 to give structure rhythm */
+.center > article {
+  h2 {
+    letter-spacing: -0.012em;
+    padding-bottom: 0.3rem;
+    position: relative;
+  }
+  h2::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 0.15em;
+    height: 0.85em;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--secondary);
+    opacity: 0.85;
+  }
+  h3 {
+    letter-spacing: -0.008em;
+    color: color-mix(in srgb, var(--dark) 88%, var(--secondary));
+  }
+}
+
+/* lead blockquote (post intro) and normal blockquotes */
+blockquote {
+  margin: 1.4rem 0;
+  border-left: 3px solid var(--secondary);
+  padding: 0.7rem 1.1rem;
+  background: var(--tint);
+  border-radius: 0 8px 8px 0;
+  transition: border-color 0.2s ease, background 0.2s ease;
+
+  & p {
+    margin: 0.3rem 0;
+  }
+  &:hover {
+    background: var(--tint-strong);
+  }
+}
+
+/* links — underline reveal on hover */
+.center > article a:not(.internal):not(.tag-link):not([role="anchor"]) {
+  background-image: linear-gradient(var(--tertiary), var(--tertiary));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  transition: background-size 0.25s ease, color 0.2s ease;
+
+  &:hover {
+    background-size: 100% 1.5px;
+  }
+}
+
+/* internal wikilinks — subtle chip */
+.center > article a.internal {
+  background-color: var(--tint);
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: var(--tint-strong);
+  }
+}
+
+/* inline code — tinted */
+code {
+  background: var(--tint-strong);
+  border: 1px solid var(--edge);
+  color: color-mix(in srgb, var(--dark) 85%, var(--secondary));
+  padding: 0.08rem 0.34rem;
+}
+
+/* code blocks — elevation, tinted edge */
+pre {
+  border: 1px solid var(--edge-soft);
+  border-radius: 10px;
+  padding: 0.2rem 0.7rem;
+  background: color-mix(in srgb, var(--lightgray) 55%, transparent);
+  box-shadow: var(--shadow-tinted);
+
+  & > code {
+    background: none;
+    border: none;
+    color: inherit;
+  }
+}
+
+figure[data-rehype-pretty-code-figure] > [data-rehype-pretty-code-title] {
+  border: 1px solid var(--edge);
+  border-radius: 7px 7px 0 0;
+  background: var(--tint);
+  color: var(--darkgray);
+  font-size: 0.82rem;
+  padding: 0.25rem 0.7rem;
+}
+
+/* gradient divider */
+hr {
+  height: 1px;
+  margin: 2.6rem auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--edge) 18%,
+    var(--secondary) 50%,
+    var(--edge) 82%,
+    transparent
+  );
+  opacity: 0.7;
+}
+
+/* tables — refined */
+.table-container > table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+th {
+  border-bottom: 2px solid var(--edge);
+  font-family: var(--headerFont);
+  letter-spacing: 0.01em;
+}
+tr {
+  transition: background 0.15s ease;
+  &:hover {
+    background: var(--tint);
+  }
+}
+
+/* images — soft frame */
+.center > article img {
+  border-radius: 10px;
+  box-shadow: var(--shadow-tinted);
+}
+
+/* =========================================================================
+   TAGS — pill chips
+   ========================================================================= */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-left: 0;
+
+  & > li > a.internal.tag-link {
+    background: var(--tint);
+    border: 1px solid var(--edge);
+    border-radius: 999px;
+    padding: 0.12rem 0.7rem;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+
+    &:hover {
+      background: var(--tint-strong);
+      border-color: var(--secondary);
+      transform: translateY(-1px);
     }
   }
 }
 
-.folder-container .folder-content li {
-  margin-bottom: 0.5rem;
+/* content meta (date, reading time) */
+.content-meta {
+  color: var(--gray);
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  margin-top: 0.2rem;
+}
 
-  li {
-    margin-bottom: 0.2rem;
+/* =========================================================================
+   HOME + LIST PAGES — post rows feel like interactive cards
+   ========================================================================= */
+
+/* the "Posts" list on the index page */
+.center > article ul li:has(> a.internal) {
+  transition: transform 0.15s ease;
+}
+
+/* list page sections (blog folder view) */
+li.section-li {
+  border-bottom: 1px solid var(--edge-soft);
+  padding: 0.6rem 0.6rem;
+  border-radius: 8px;
+  transition: background 0.18s ease, transform 0.15s ease;
+
+  &:hover {
+    background: var(--tint);
+    transform: translateX(3px);
+  }
+
+  & > .section .meta {
+    font-family: var(--codeFont);
+    font-size: 0.8rem;
+  }
+  & > .section .desc h3 {
+    margin: 0;
+    letter-spacing: -0.01em;
   }
 }
+
+/* =========================================================================
+   SIDEBAR — keep structure (do NOT break scroll/explorer)
+   ========================================================================= */
 
 .sidebar.right {
   display: flex;
@@ -66,8 +317,163 @@
     overflow: visible;
   }
 }
-
 #quartz-body .sidebar.right {
   height: auto !important;
   min-height: 100vh;
+}
+
+/* brand mark / page title */
+.page-title a {
+  font-family: var(--headerFont);
+  letter-spacing: -0.02em;
+  background: linear-gradient(120deg, var(--dark), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity 0.2s ease;
+  &:hover {
+    opacity: 0.82;
+  }
+}
+
+/* table of contents — active line accent */
+.toc {
+  .toc-content {
+    border-left: 1px solid var(--edge-soft);
+    padding-left: 0.8rem;
+
+    & ul > li > a {
+      transition: color 0.18s ease, transform 0.18s ease;
+      &:hover {
+        color: var(--tertiary);
+        transform: translateX(2px);
+      }
+    }
+    & .in-view {
+      color: var(--gray);
+    }
+    & a.in-view,
+    & li:has(> a):hover {
+      color: var(--dark);
+    }
+  }
+}
+
+/* trending posts + recent notes — card hover */
+.recent-notes {
+  & > h3 {
+    font-family: var(--headerFont);
+    letter-spacing: -0.01em;
+  }
+  & ul.recent-ul > li {
+    border: 1px solid transparent;
+    border-radius: 9px;
+    padding: 0.5rem 0.6rem;
+    transition: border-color 0.18s ease, background 0.18s ease, transform 0.15s ease;
+
+    &:hover {
+      border-color: var(--edge);
+      background: var(--tint);
+      transform: translateY(-1px);
+    }
+    .section > .desc h3 {
+      margin: 0;
+      font-size: 0.92rem;
+      letter-spacing: -0.005em;
+    }
+    .section > .meta {
+      font-family: var(--codeFont);
+      font-size: 0.74rem;
+    }
+  }
+}
+
+/* backlinks — chips */
+.backlinks .backlink {
+  border: 1px solid var(--edge-soft);
+  border-radius: 8px;
+  transition: border-color 0.18s ease, background 0.18s ease;
+  &:hover {
+    border-color: var(--secondary);
+    background: var(--tint);
+  }
+}
+
+/* search + darkmode buttons inherit theme cleanly; nudge hover */
+.search > .search-button,
+.darkmode {
+  transition: opacity 0.2s ease;
+}
+
+/* =========================================================================
+   FOOTER
+   ========================================================================= */
+
+footer {
+  border-top: 1px solid var(--edge-soft);
+  margin-top: 3rem;
+  padding-top: 1.2rem;
+
+  & ul {
+    gap: 0.4rem 1.2rem;
+  }
+  & a {
+    transition: color 0.2s ease;
+    &:hover {
+      color: var(--tertiary);
+    }
+  }
+}
+
+/* =========================================================================
+   MOTION — gentle content reveal (MOTION_INTENSITY ~6, reduced-motion safe)
+   ========================================================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  .center > article > * {
+    animation: chimera-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .center > article > *:nth-child(1) { animation-delay: 0.02s; }
+  .center > article > *:nth-child(2) { animation-delay: 0.06s; }
+  .center > article > *:nth-child(3) { animation-delay: 0.1s; }
+  .center > article > *:nth-child(4) { animation-delay: 0.14s; }
+  .center > article > *:nth-child(n + 5) { animation-delay: 0.16s; }
+}
+
+@keyframes chimera-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* navigation progress bar — gradient */
+.navigation-progress {
+  background: linear-gradient(90deg, var(--secondary), var(--tertiary));
+}
+
+/* =========================================================================
+   keep prior list spacing helpers
+   ========================================================================= */
+
+.overflow {
+  li {
+    margin-bottom: 0.5rem;
+    li {
+      margin-bottom: 0.2rem;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+.folder-container .folder-content li {
+  margin-bottom: 0.5rem;
+  li {
+    margin-bottom: 0.2rem;
+  }
 }
