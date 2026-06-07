@@ -4,8 +4,6 @@ tags: [AI, Systems, Performance, LLM]
 date: 2026-06-06
 ---
 
-# The LLM Cost War is Over. Latency Won.
-
 > Every major AI lab dropped API prices again this week. The commodity race is essentially done. When cost goes to zero, something else becomes the moat. In HFT, we already lived through this. I know what comes next.
 
 ---
