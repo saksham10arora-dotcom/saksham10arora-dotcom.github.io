@@ -12,7 +12,7 @@ tags: [hackathon, ai, fastapi, nextjs, llm, python, sqlite, chromadb]
 
 Discord servers are full of unanswered questions. New members join excited and go silent within three days. Knowledge is scattered across pinned messages nobody reads and Notion wikis that haven't been touched since Q1.
 
-The problem isn't that people don't want to connect. It's that no platform is smart enough to know *who should connect to whom, about what, and when.*
+The problem isn't that people don't want to connect. It's that no platform is smart enough to know _who should connect to whom, about what, and when._
 
 That's what we built CommuneOS to fix — an AI-powered community OS where six specialized agents work together to personalize every member's experience in real time. No manual tagging. No static onboarding surveys. Upload your resume, and the platform figures the rest out.
 
@@ -50,14 +50,14 @@ The lesson I've learned from every hackathon: **spend the first 30 minutes makin
 
 The central bet was that one monolithic LLM call wouldn't cut it. We split the intelligence into six agents, each with one job:
 
-| Agent | What it does |
-|---|---|
-| **Identity** | Infers skills, maps expertise areas, assigns confidence score |
-| **Discovery** | Ranks channels and resources against the user's skill profile |
-| **Learning** | Generates an 8-week personalized roadmap with milestones |
-| **Mentor** | Matches the user to the best mentor with a compatibility score |
-| **Health** | Flags at-risk members, unanswered threads, churn signals |
-| **Organizer** | Suggests intervention actions, events, mentor invites |
+| Agent         | What it does                                                   |
+| ------------- | -------------------------------------------------------------- |
+| **Identity**  | Infers skills, maps expertise areas, assigns confidence score  |
+| **Discovery** | Ranks channels and resources against the user's skill profile  |
+| **Learning**  | Generates an 8-week personalized roadmap with milestones       |
+| **Mentor**    | Matches the user to the best mentor with a compatibility score |
+| **Health**    | Flags at-risk members, unanswered threads, churn signals       |
+| **Organizer** | Suggests intervention actions, events, mentor invites          |
 
 `orchestrator.py` chains them, caches the result for an hour, and falls back to mock data if Groq goes down. The whole pipeline runs in about 3 seconds on a warm Groq call.
 
@@ -89,9 +89,9 @@ We didn't use fake demo users. We uploaded our actual resumes.
 
 **Suraj** — SURAJ RESUME.pdf. One page, 4,733 characters. Detected: Java, Python, JavaScript, TypeScript, Spring Boot, Kafka, gRPC, FastAPI, Django, PostgreSQL, MySQL, TimescaleDB, Redis, Pinecone. CGPA 9.4. Surfaced Cloud & DevOps community, System Design Primer, FastAPI tutorial, Docker & Kubernetes. Mentor match pivoted to distributed systems profile.
 
-**Satyansh** — his backend/AI stack detected cleanly. AI Builders community. LangChain, Groq, ChromaDB resources surfaced.
+**Satyansh** — his backend/AI stack detected cleanly. AI Builders community. LangChain, Groq, ChromaDB resources surfaced. The ingestion layer and RAG pipeline was pretty much his clutch.
 
-**Vaibhav** — his profile, his stack, his recommendations. Completely different from the other three. Vaibhav owned the resume parsing pipeline end-to-end, touched backend service wiring, and helped polish the frontend onboarding flow. The fact that his dashboard came out distinct from mine and Suraj's was partly his doing — he knew exactly what the parser should be pulling out because he built it.
+**Vaibhav** — his profile, his stack, his recommendations. Completely different from the other three. Vaibhav owned the resume parsing pipeline end-to-end, touched backend service wiring.
 
 Four teammates. Four completely different dashboards. Zero manual tagging. The judges uploaded a profile live, watched the spinner, and saw a personalized roadmap appear in under five seconds. That was the moment.
 
@@ -160,15 +160,15 @@ A system that degrades gracefully looks more production-ready than a system with
 
 ## The Numbers
 
-| Metric | Value |
-|---|---|
-| AI agents | 6 |
-| Pipeline latency | ~3s (Groq), ~5s (OpenRouter) |
-| Learning resources | 37 (all real URLs) |
-| Communities | 8 |
-| Data stores | 4 (SQLite, ChromaDB, users.json, tokens.json) |
-| Mocked resource URLs | 0 |
-| Resumes parsed correctly live | 4/4 |
+| Metric                        | Value                                         |
+| ----------------------------- | --------------------------------------------- |
+| AI agents                     | 6                                             |
+| Pipeline latency              | ~3s (Groq), ~5s (OpenRouter)                  |
+| Learning resources            | 37 (all real URLs)                            |
+| Communities                   | 8                                             |
+| Data stores                   | 4 (SQLite, ChromaDB, users.json, tokens.json) |
+| Mocked resource URLs          | 0                                             |
+| Resumes parsed correctly live | 4/4                                           |
 
 ---
 
@@ -182,4 +182,4 @@ A system that degrades gracefully looks more production-ready than a system with
 
 ---
 
-*CommuneOS is open source. The repo is at [github.com/Satyanshgaur/CommuneOS](https://github.com/Satyanshgaur/CommuneOS). The tag `v1.0.0` is the hackathon build.*
+_CommuneOS is open source. The repo is at [github.com/Satyanshgaur/CommuneOS](https://github.com/Satyanshgaur/CommuneOS). The tag `v1.0.0` is the hackathon build._
