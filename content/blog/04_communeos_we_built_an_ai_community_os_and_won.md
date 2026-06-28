@@ -91,7 +91,7 @@ We didn't use fake demo users. We uploaded our actual resumes.
 
 **Satyansh** — his backend/AI stack detected cleanly. AI Builders community. LangChain, Groq, ChromaDB resources surfaced.
 
-**Vaibhav** — his profile, his recommendations. Different from all three of ours.
+**Vaibhav** — his profile, his stack, his recommendations. Completely different from the other three. Vaibhav owned the resume parsing pipeline end-to-end, touched backend service wiring, and helped polish the frontend onboarding flow. The fact that his dashboard came out distinct from mine and Suraj's was partly his doing — he knew exactly what the parser should be pulling out because he built it.
 
 Four teammates. Four completely different dashboards. Zero manual tagging. The judges uploaded a profile live, watched the spinner, and saw a personalized roadmap appear in under five seconds. That was the moment.
 
