@@ -100,3 +100,7 @@ llm-bench --provider anthropic --model claude-sonnet-4-6 \
 Repo: [github.com/saksham10arora-dotcom/llm-bench](https://github.com/saksham10arora-dotcom/llm-bench)
 
 If you disagree with any measurement decision, the Methodology section of the README is the place to start the argument. That is what it is there for.
+
+---
+
+**Update (v0.2.0):** llm-bench is now on PyPI. `pip install llm-latency-bench`. Also ships a `--task` flag (`text`, `code`, `pdf`, `image`, `chat`) after feedback from a Sr DS at Meta that task type is upstream of any latency number -- the metric profile that matters for batch PDF processing at night is completely different from interactive code gen. The flag adds that context to every benchmark output.
