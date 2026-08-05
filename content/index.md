@@ -22,9 +22,9 @@ tags: [About]
   </g>
 </svg>
 
-Hey. I'm **Saksham Arora**, a systems and quant engineer. I build things where the interesting constraint is nanoseconds, not lines of code. Most of my work starts as a weird idea ("what if a live exchange ran inside a GitHub README?") and turns into something I can benchmark. You can learn more about me through my [portfolio](https://saksham.digital) (psst: press `` ` `` there).
+Hey. I'm **Saksham Arora**, a data scientist and quant researcher. I build things where the interesting constraint is the data, not the framework. Most of my work starts as a weird idea ("what if a live exchange ran inside a GitHub README?") and turns into something I can measure. You can learn more about me through my [portfolio](https://saksham.digital) (psst: press `` ` `` there).
 
-I compete in quant trading competitions, write low-latency C++20, and measure LLM APIs the way you'd measure an order router.
+I compete in quant trading competitions, build ML pipelines, and have a systems engineering background in low-latency C++20.
 
 ## Posts
 
