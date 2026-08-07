@@ -86,6 +86,25 @@ export default (() => {
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Saksham Arora",
+              url: "https://saksham.digital",
+              jobTitle: "Data Scientist & Quant Researcher",
+              sameAs: [
+                "https://saksham.digital",
+                "https://github.com/saksham10arora-dotcom",
+                "https://linkedin.com/in/saksham-arora10",
+                "https://x.com/nerfsaksham",
+              ],
+            }),
+          }}
+        ></script>
+
         {css.map((resource) => CSSResourceToStyleElement(resource, true))}
         {js
           .filter((resource) => resource.loadTime === "beforeDOMReady")

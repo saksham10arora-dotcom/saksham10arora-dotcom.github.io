@@ -1,5 +1,6 @@
 ---
 title: Chimera
+description: Saksham Arora — data scientist and quant researcher. HFT matching engine at 2.7M ops/sec, IMC Prosperity 4 top 0.8% globally, and writing on systems, quant, and AI.
 tags: [About]
 ---
 
