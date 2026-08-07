@@ -33,9 +33,9 @@ I compete in quant trading competitions, build ML pipelines, and have a systems 
 - [[blog/the-average-latency-lie|The Average Latency Lie: What 100 LLM API Calls Taught Me]] #AI #LLM
 - [[blog/02_smart_pointers_complete_guide|Smart Pointers in C++]] #cpp #Systems
 
-## Market Depth
+## What You'll Find Here
 
-Mostly things I'm building, measuring, or trying to understand at the systems level. Sorted by book depth:
+Mostly things I'm building, measuring, or trying to understand at the systems level.
 
 - **HFT and systems** - Teardowns of my matching engine, cache locality deep dives, lock-free data structures. #HFT #Systems #Performance
 - **Quant** - Notes from IMC Prosperity 4, market microstructure, options math, algo trading research. #Quant

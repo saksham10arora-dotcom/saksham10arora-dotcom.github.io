@@ -30,7 +30,10 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    // Default is "link", which navigates folder names to a generated
+    // Folder: <name> listing page on click. "collapse" makes the folder row
+    // purely an expand/collapse toggle, same as the tree's own chevron.
+    Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "collapse" })),
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents()),
@@ -75,7 +78,10 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    // Default is "link", which navigates folder names to a generated
+    // Folder: <name> listing page on click. "collapse" makes the folder row
+    // purely an expand/collapse toggle, same as the tree's own chevron.
+    Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "collapse" })),
   ],
   right: [],
 }
