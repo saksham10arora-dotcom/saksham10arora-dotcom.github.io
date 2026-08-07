@@ -24,6 +24,7 @@ import Comments from "./Comments"
 import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 import StatsMarquee from "./StatsMarquee"
+import AgentNote from "./AgentNote"
 
 export {
   ArticleTitle,
@@ -52,4 +53,5 @@ export {
   Flex,
   ConditionalRender,
   StatsMarquee,
+  AgentNote,
 }
