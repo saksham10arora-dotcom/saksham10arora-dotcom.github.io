@@ -21,7 +21,7 @@ export default (() => {
     // The document title is the single strongest text signal on the page and the
     // string that shows up in search results and AI citations, so the author's
     // name rides along unless the title already carries it.
-    const title = rawTitle.includes(siteAuthor.name) ? rawTitle : `${rawTitle} — ${siteAuthor.name}`
+    const title = rawTitle.includes(siteAuthor.name) ? rawTitle : `${rawTitle} · ${siteAuthor.name}`
     const description =
       fileData.frontmatter?.socialDescription ??
       fileData.frontmatter?.description ??
