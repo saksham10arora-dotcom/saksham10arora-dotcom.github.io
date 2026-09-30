@@ -26,7 +26,7 @@ If you're unsure, **start with `unique_ptr`.** You're right 90% of the time.
 
 ---
 
-## `unique_ptr` — The One You Should Use Everywhere
+## `unique_ptr`: The One You Should Use Everywhere
 
 `unique_ptr` expresses **sole ownership**. One pointer owns the object. When it goes out of scope, the object is deleted. No questions asked.
 
@@ -36,9 +36,9 @@ If you're unsure, **start with `unique_ptr`.** You're right 90% of the time.
 static_assert(sizeof(std::unique_ptr<int>) == sizeof(int*));  // Both 8 bytes
 ```
 
-That's not a simplification — `unique_ptr` is literally the same size as a raw pointer. The compiler optimizes away all the abstraction. The destructor call becomes a single `delete` instruction. The `operator->` compiles to a direct dereference. **Zero overhead.**
+That's not a simplification: `unique_ptr` is literally the same size as a raw pointer. The compiler optimizes away all the abstraction. The destructor call becomes a single `delete` instruction. The `operator->` compiles to a direct dereference. **Zero overhead.**
 
-This is why I used raw pointers with a custom arena allocator in my [HFT Matching Engine](https://github.com/saksham10arora-dotcom/Simple-HFT-Engine) — but for any normal application, `unique_ptr` gives you that same raw pointer performance with automatic cleanup.
+This is why I used raw pointers with a custom arena allocator in my [HFT Matching Engine](https://github.com/saksham10arora-dotcom/Simple-HFT-Engine), but for any normal application, `unique_ptr` gives you that same raw pointer performance with automatic cleanup.
 
 ### The Move-Only Trick
 
@@ -52,7 +52,7 @@ This is a **compile-time guarantee** that only one pointer owns the object. No r
 
 ### Factory Pattern
 
-This is the most common use case — and the one you should use in every project:
+This is the most common use case, and the one you should use in every project:
 
 ```cpp
 std::unique_ptr<Strategy> create_strategy(const Config& cfg) {
@@ -79,16 +79,16 @@ Same performance. But the raw pointer version leaks memory if you forget to `del
 
 ### Custom Deleters (C API Integration)
 
-This is where `unique_ptr` really shines — wrapping C resources:
+This is where `unique_ptr` really shines, wrapping C resources:
 
 ```cpp
-// File handle — auto-closes when done
+// File handle: auto-closes when done
 auto file = std::unique_ptr<FILE, decltype(&fclose)>(
     fopen("data.csv", "r"), fclose
 );
-// No need to remember fclose() — RAII handles it
+// No need to remember fclose(): RAII handles it
 
-// Database connection — auto-disconnects
+// Database connection: auto-disconnects
 auto db = std::unique_ptr<PGconn, decltype(&PQfinish)>(
     PQconnectdb("host=localhost"), PQfinish
 );
@@ -98,9 +98,9 @@ Every C library that gives you a handle + cleanup function can be wrapped in `un
 
 ---
 
-## `shared_ptr` — The One You Probably Don't Need
+## `shared_ptr`: The One You Probably Don't Need
 
-`shared_ptr` uses **reference counting** — it tracks how many pointers share ownership. The object is deleted when the last one dies.
+`shared_ptr` uses **reference counting**: it tracks how many pointers share ownership. The object is deleted when the last one dies.
 
 ### How It Works Internally
 
@@ -124,7 +124,7 @@ auto sp2 = sp1;  // Reference count: 2
 
 Here's what tutorials don't tell you:
 
-**Cost #1: Size — 2x larger than unique_ptr**
+**Cost #1: Size, 2x larger than unique_ptr**
 ```cpp
 sizeof(std::unique_ptr<int>) == 8;   // One pointer
 sizeof(std::shared_ptr<int>) == 16;  // Two pointers (object + control block)
@@ -138,7 +138,7 @@ auto sp2 = sp1;  // Atomic increment of strong_count (~10-20 ns)
 
 **Cost #3: Cache line bouncing in multithreaded code**
 
-When two threads copy/destroy `shared_ptr` to the same object, they both need to atomically modify the same `strong_count` integer. This causes the cache line containing the control block to bounce between CPU cores — **a hidden performance killer in concurrent systems.**
+When two threads copy/destroy `shared_ptr` to the same object, they both need to atomically modify the same `strong_count` integer. This causes the cache line containing the control block to bounce between CPU cores: **a hidden performance killer in concurrent systems.**
 
 This is why you'll never see `shared_ptr` in HFT engines or game engines on the hot path.
 
@@ -158,11 +158,11 @@ class AlertSystem {
 // Data is freed when BOTH Dashboard and AlertSystem are destroyed
 ```
 
-If you can't answer **"who should delete this object?"** with a single clear answer, `shared_ptr` is correct. But if you can — use `unique_ptr`.
+If you can't answer **"who should delete this object?"** with a single clear answer, `shared_ptr` is correct. But if you can, use `unique_ptr`.
 
 ---
 
-## `weak_ptr` — The Cycle Breaker
+## `weak_ptr`: The Cycle Breaker
 
 `weak_ptr` observes a `shared_ptr` **without incrementing the reference count**. It exists for one reason: preventing circular references.
 
@@ -187,7 +187,7 @@ b->a = a;  // a: strong_count = 2
 
 ```cpp
 class B {
-    std::weak_ptr<A> a;  // B → A (weak) — doesn't prevent A's destruction
+    std::weak_ptr<A> a;  // B → A (weak): doesn't prevent A's destruction
 };
 // Now when a goes out of scope → strong_count = 0 → A destroyed → b freed
 ```
@@ -198,7 +198,7 @@ class B {
 std::weak_ptr<Order> wp = some_shared_ptr;
 
 if (auto locked = wp.lock()) {
-    // locked is a shared_ptr — object is alive
+    // locked is a shared_ptr: object is alive
     std::cout << locked->price << "\n";
 } else {
     // Object has been destroyed
@@ -215,7 +215,7 @@ public:
     std::shared_ptr<PriceData> get(const std::string& symbol) {
         if (auto it = cache_.find(symbol); it != cache_.end()) {
             if (auto sp = it->second.lock()) return sp;  // Cache hit
-            cache_.erase(it);  // Expired — clean up
+            cache_.erase(it);  // Expired: clean up
         }
         auto data = std::make_shared<PriceData>(fetch(symbol));
         cache_[symbol] = data;
@@ -233,19 +233,19 @@ The cache holds `weak_ptr`, so it doesn't keep data alive unnecessarily. When no
 This is the part most people get wrong:
 
 ```cpp
-// ✅ Function just READS data — pass by const reference
+// ✅ Function just READS data: pass by const reference
 void print(const Order& order);
 
-// ✅ Function MODIFIES data — pass by reference
+// ✅ Function MODIFIES data: pass by reference
 void update(Order& order);
 
-// ✅ Function TAKES ownership — pass unique_ptr by value
+// ✅ Function TAKES ownership: pass unique_ptr by value
 void consume(std::unique_ptr<Order> order);
 
-// ✅ Function SHARES ownership — pass shared_ptr by value
+// ✅ Function SHARES ownership: pass shared_ptr by value
 void share(std::shared_ptr<Order> order);
 
-// ❌ DON'T do this — pointless indirection
+// ❌ DON'T do this: pointless indirection
 void f(const std::unique_ptr<Order>& p);  // Just use const Order&
 void f(const std::shared_ptr<Order>& p);  // Just use const Order&
 ```
@@ -271,9 +271,9 @@ void f(const std::shared_ptr<Order>& p);  // Just use const Order&
 ## TL;DR
 
 1. **Use `unique_ptr` by default.** It's zero-cost and prevents leaks.
-2. **Use `shared_ptr` only for genuine shared ownership.** It's not free — atomic ops on every copy.
+2. **Use `shared_ptr` only for genuine shared ownership.** It's not free: atomic ops on every copy.
 3. **Use `weak_ptr` to break cycles** and for caches.
-4. **Pass by `const T&` in function parameters** — not by smart pointer, unless you're transferring ownership.
+4. **Pass by `const T&` in function parameters**, not by smart pointer, unless you're transferring ownership.
 5. **In hot paths** (game loops, HFT matching, real-time audio): profile first, but consider arena allocators with raw pointers if `shared_ptr` atomics show up in your profile.
 
 ---

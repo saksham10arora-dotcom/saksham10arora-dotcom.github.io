@@ -10,7 +10,7 @@ date: 2026-06-09
 
 ## The Idea
 
-A few weeks into gitrade v2 -- a limit order book that lived in a GitHub README -- I realized I had built the wrong thing. It was a toy. A curiosity. An order book with no stakes, no prediction, no reason to actually care about what price things traded at.
+A few weeks into gitrade v2 (a limit order book that lived in a GitHub README), I realized I had built the wrong thing. It was a toy. A curiosity. An order book with no stakes, no prediction, no reason to actually care about what price things traded at.
 
 So I asked: what if the underlying asset was something real? Something you could actually form a view on?
 
@@ -18,11 +18,11 @@ The repo itself. Its own GitHub stats.
 
 Three tickers:
 
-- `$STAR` -- bet on where the stargazer count lands by Sunday
-- `$COMMIT` -- bet on commits pushed this week
-- `$FORK` -- bet on fork count at settlement
+- `$STAR`: bet on where the stargazer count lands by Sunday
+- `$COMMIT`: bet on commits pushed this week
+- `$FORK`: bet on fork count at settlement
 
-You trade all week. Sunday midnight UTC, real GitHub numbers are pulled from the API. Every position cash-settles to the actual stat. The gap between what the market priced and what GitHub returned -- that's your P&L.
+You trade all week. Sunday midnight UTC, real GitHub numbers are pulled from the API. Every position cash-settles to the actual stat. The gap between what the market priced and what GitHub returned: that's your P&L.
 
 It's a futures market. The underlying is the repo's own growth.
 
@@ -112,13 +112,13 @@ Three house bots run all week to keep liquidity alive: a market maker (`+/- 4%` 
 
 ## What I Learned
 
-**GitHub Actions as infrastructure is underrated.** Cron jobs, event triggers, persistent state via committed files -- you can build surprisingly complex systems without a single server.
+**GitHub Actions as infrastructure is underrated.** Cron jobs, event triggers, persistent state via committed files: you can build surprisingly complex systems without a single server.
 
 **Futures beat spot for engagement.** A spot market prices something already observable. A futures market prices something that hasn't happened yet. That's the difference between a ledger and a game.
 
 **Mark-to-market matters even in toy systems.** When your position shows unrealized loss, you have an incentive to act. When everything marks to zero, nothing means anything.
 
-**Bot sandboxing is non-trivial.** `SIGALRM` is POSIX-only. The bot can't import requests, can't spin threads, has 2 seconds to return orders. The constraint is the point -- a good strategy is pure logic on the snapshot.
+**Bot sandboxing is non-trivial.** `SIGALRM` is POSIX-only. The bot can't import requests, can't spin threads, has 2 seconds to return orders. The constraint is the point: a good strategy is pure logic on the snapshot.
 
 ---
 
