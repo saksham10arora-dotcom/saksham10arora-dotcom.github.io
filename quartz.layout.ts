@@ -10,6 +10,7 @@ export const sharedPageComponents: SharedLayout = {
     links: {
       GitHub: "https://github.com/saksham10arora-dotcom",
       LinkedIn: "https://linkedin.com/in/saksham-arora10",
+      X: "https://x.com/nerfsaksham",
       Portfolio: "https://saksham.digital",
     },
   }),
@@ -57,10 +58,10 @@ export const defaultContentPageLayout: PageLayout = {
       },
     }),
     Component.RecentNotes({
-      title: "Trending Posts",
+      title: "Latest posts",
       limit: 4,
       showTags: false,
-      filter: (file) => file.slug !== "index",
+      filter: (file) => file.slug !== "index" && !file.slug?.startsWith("wiki/") && !file.slug?.startsWith("tags/"),
       sort: (f1: QuartzPluginData, f2: QuartzPluginData) => {
         const d1 = f1.dates?.created ? new Date(f1.dates.created) : new Date(0)
         const d2 = f2.dates?.created ? new Date(f2.dates.created) : new Date(0)
