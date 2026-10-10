@@ -2,6 +2,7 @@
 title: NVIDIA Killed the Draft Model and Got 4x Throughput For Free
 tags: [LLM, Inference, Systems, Speculative Decoding]
 date: 2026-07-10
+aliases: [blog/06_nvidia_killed_the_draft_model]
 ---
 
 > Nemotron-Labs-Diffusion accepts 6.82 tokens per speculative step, versus 2.75 for Eagle3. Same weights, no separate draft model, 4x throughput on a GB200 at batch size 1.

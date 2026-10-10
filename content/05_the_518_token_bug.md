@@ -2,6 +2,7 @@
 title: "The 518-Token Bug: When GPT-5.5's Reasoning Gets Cut Off at Fixed Intervals"
 tags: [LLM, Inference, Systems, Debugging]
 date: 2026-07-06
+aliases: [blog/05_the_518_token_bug]
 ---
 
 > GPT-5.5's Codex model truncates reasoning at 516, 1034, 1552 tokens: always 518 apart. One user logged 4,454 truncations in a month. In 4 of 10 test runs, the truncated answer was wrong.

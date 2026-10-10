@@ -2,6 +2,7 @@
 title: "Smart Pointers in C++: The Complete Guide"
 tags: [C++, Systems, Performance]
 date: 2026-05-20
+aliases: [blog/02_smart_pointers_complete_guide]
 ---
 
 > Every C++ developer learns about `unique_ptr` and `shared_ptr`. But most tutorials skip the part that actually matters in production: **when each one costs you performance, and why.**

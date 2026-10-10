@@ -2,6 +2,7 @@
 title: Chimera
 description: Saksham Arora, data scientist and quant researcher. HFT matching engine at 2.7M ops/sec, IMC Prosperity 4 top 0.8% globally, and writing on systems, quant, and AI.
 tags: [About]
+aliases: [blog/index]
 ---
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 96" width="100%" font-family="ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace" role="img" aria-label="Chimera ticker">
@@ -29,9 +30,9 @@ I compete in quant trading competitions, build ML pipelines, and have a systems 
 
 ## Posts
 
-- [[blog/01_why_i_rebuilt_my_hft_engine|Why I Rebuilt My HFT Matching Engine From Scratch]] #HFT #Systems #Performance
-- [[blog/the-average-latency-lie|The Average Latency Lie: What 100 LLM API Calls Taught Me]] #AI #LLM
-- [[blog/02_smart_pointers_complete_guide|Smart Pointers in C++]] #cpp #Systems
+- [[01_why_i_rebuilt_my_hft_engine|Why I Rebuilt My HFT Matching Engine From Scratch]] #HFT #Systems #Performance
+- [[the-average-latency-lie|The Average Latency Lie: What 100 LLM API Calls Taught Me]] #AI #LLM
+- [[02_smart_pointers_complete_guide|Smart Pointers in C++]] #cpp #Systems
 
 ## What You'll Find Here
 

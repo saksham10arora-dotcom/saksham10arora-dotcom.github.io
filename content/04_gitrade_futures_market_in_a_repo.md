@@ -2,6 +2,7 @@
 title: I Built a Futures Market Inside a GitHub Repo
 tags: [Systems, Trading, Python, GitHub]
 date: 2026-06-09
+aliases: [blog/04_gitrade_futures_market_in_a_repo]
 ---
 
 > You can short my own repo. From inside the repo. Using GitHub Issues as orders.

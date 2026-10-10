@@ -2,6 +2,7 @@
 title: A Free Mystery Model Just Beat GPT-5.6 on Coding, and Nobody Audited the Number
 tags: [LLM, Benchmarks, Systems]
 date: 2026-08-22
+aliases: [blog/10_ox_alpha_free_mystery_model_beat_gpt56]
 ---
 
 On August 20, a model called "ox-alpha" showed up on OpenRouter with a one-week free window and zero listed pricing. On the DeepSWE coding benchmark it scored 80% Pass@1, ahead of Claude Fable 5 at 65%, GLM-5.3 at 62%, and GPT-5.6 Sol at 52%. Nobody knows who built it.

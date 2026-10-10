@@ -2,6 +2,7 @@
 title: Ember-1 Cut 40% of the Tokens and Kept the Score
 tags: [AI, LLMs, Inference, Evals]
 date: 2026-09-28
+aliases: [blog/21_ember_1_cut_40_percent_of_the_tokens]
 ---
 
 Fireworks shipped Ember-1 on September 23: a post-trained Kimi K3 that uses about 40% fewer tokens for the same work. On Terminal-Bench 2.1 it scored 82.0% against K3 Max's 80.9%, at 51.9% lower cost.

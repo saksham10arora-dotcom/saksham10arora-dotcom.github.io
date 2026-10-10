@@ -2,6 +2,7 @@
 title: Escape Does Not Have to Exit Full Screen
 tags: [Browsers, Web APIs, Systems, Debugging]
 date: 2026-08-30
+aliases: [blog/13_escape_does_not_have_to_exit_fullscreen]
 ---
 
 I kept abandoning lectures about forty minutes in. Not because I was finished, because it got hard and my hand moved before I had decided anything. So I went looking for a way to make leaving cost more than a keypress, and assumed the answer was no: Escape exiting full screen is user-agent behaviour, the keydown fires but `preventDefault()` does not cancel the exit, and that is that.
