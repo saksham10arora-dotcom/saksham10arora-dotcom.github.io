@@ -5,7 +5,7 @@ date: 2026-10-10
 aliases: [blog/25_my_second_brain_has_two_ais]
 ---
 
-![Two cute mascots, a coral one with a notebook and a blue cloud with headphones, sharing one phone](assets/25-cover.png)
+![Two felt plush mascots, a coral one hugging a notebook and a blue cloud with headphones, sharing one phone](assets/25-cover-plush.jpg)
 
 Right now, with my MacBook closed in my bag, I can open my phone and ask "what's due this week?" and get an answer from my own notes. I can say "I met Adi, he's at X, we talked about Y" and it lands in my vault.
 
