@@ -69,7 +69,7 @@ I tested it by playing the phone: a fake "met Adi" note merged by itself and sho
 ### 6. What broke
 
 - **The voice model starts blind.** Codex voice is two models: a fast voice model you talk to, and the agent behind it. The app starts the voice model with `includeStartupContext: false`. It only gets my context when it hands a task to the agent. So by voice, I ask in tasks: "check my notes and tell me..."
-- **macOS quietly blocks background jobs from your Desktop folder.** It killed my every-10-minutes sync timer on day one. Worse: while writing this, I found my main search index job had failed with the same error **120 nights in a row**. The search I relied on was four months stale and never told me.
+- **macOS quietly blocks background jobs from your Desktop folder.** It killed my every-10-minutes sync timer on day one. Worse: while writing this, I found my main search index job had failed with the same error **120 nights in a row**. The search I relied on hadn't updated since May 13, and never told me. The fix was one line: point the job at the Python my other nightly jobs already use. It's fresh again.
 - **JARVIS**, see above. Lesson: decide where a thing lives before deciding what it does.
 
 ### 7. Steal it
