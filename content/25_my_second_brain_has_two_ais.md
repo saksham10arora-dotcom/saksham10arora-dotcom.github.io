@@ -37,7 +37,7 @@ Reading every note on every question doesn't scale, so the vault is indexed thre
 - **LightRAG**: relationship search ("what connects my HFT engine to my IMC Prosperity strategy")
 - **CLIP**: images, so screenshots and lecture slides are searchable too
 
-A small router server picks the right one per question. All of them run as MCP servers, so any agent can use them, and they re-index on a schedule every night. On top of that, a knowledge graph of the whole vault answers structural questions like "how does X relate to Y" without grepping 2,000 files.
+A small router server picks the right one per question. All of them run as MCP servers, so any agent can use them, and they re-index every night: about 11,000 chunks of my own notes. On top of that, a knowledge graph of the whole vault answers structural questions like "how does X relate to Y" without grepping 2,000 files.
 
 ### 4. Two agents, one brain
 
@@ -59,7 +59,7 @@ Before this, I built JARVIS: a Discord bot running Claude, screen memory, and a 
 
 The fix needed no server. **The private GitHub repo is the bridge.**
 
-- After every reply on my Mac, a sync script pushes my notes plus a copy of the memory files to the repo.
+- After every Claude reply on my Mac, a sync script pushes my notes plus a copy of the memory files to the repo.
 - On my phone, Codex in the ChatGPT app and Claude Code on the web both work on that repo in the cloud. They read the same memory, so they know me with the Mac off.
 - When I tell the phone something new, the agent writes exactly one note into `inbox/`. A GitHub Action merges changes that only touch `inbox/` automatically. Anything else waits for me.
 - Next time I open my Mac, the note syncs down and Claude files it in the right place.
