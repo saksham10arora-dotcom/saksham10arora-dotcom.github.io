@@ -32,12 +32,12 @@ export interface SiteAuthor {
 
 export const siteAuthor: SiteAuthor = {
   name: "Saksham Arora",
-  alternateName: "sksm",
+  alternateName: "nerfsaksham",
   url: "https://saksham.digital",
   id: "https://saksham.digital/#person",
-  jobTitle: "Data Scientist & Quant Researcher",
+  jobTitle: "Data Scientist, Quant Researcher and AI Engineer",
   description:
-    "Data scientist and quant researcher from India. Builds ML pipelines, quantitative trading models, and data-driven systems. IMC Prosperity 4 top ~0.8% globally. Also has a systems engineering background in low-latency C++.",
+    "Saksham Arora (nerfsaksham): data scientist, quant researcher and AI engineer from India. Builds Margin, Latch and Claude Code mods, ML pipelines and quantitative research, with a low-latency C++ background.",
   image: "https://saksham.digital/saksham.jpg",
   twitterHandle: "nerfsaksham",
   sameAs: [
@@ -61,6 +61,10 @@ export const siteAuthor: SiteAuthor = {
     "https://pypi.org/user/nerfsaksham/",
     "https://www.npmjs.com/~nerfsaksham",
     "https://topmate.io/nerfsaksham",
+    "https://www.instagram.com/nerfsaksham/",
+    "https://leetcode.com/u/nerfsaksham/",
+    "https://codeforces.com/profile/C0SBYYY",
+    "https://www.codechef.com/users/c0sbyyy",
   ],
 }
 
@@ -73,7 +77,7 @@ export interface SitePublication {
 export const sitePublication: SitePublication = {
   name: "Chimera",
   description:
-    "Chimera is the personal blog of Saksham Arora -- essays and notes on systems, quant, and AI.",
+    "Chimera is the personal blog of Saksham Arora (nerfsaksham): AI model launches read through the numbers, and write-ups of the tools he builds.",
 }
 
 /** Origin + base path of the deployed site, with no trailing slash. */
