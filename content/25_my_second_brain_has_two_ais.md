@@ -74,7 +74,7 @@ The fix needed no server. **The private GitHub repo is the bridge.**
 - When I tell the phone something new, the agent writes exactly one note into `inbox/`. A GitHub Action merges changes that only touch `inbox/` automatically. Anything else waits for me.
 - Next time I open my Mac, the note syncs down and Claude files it in the right place.
 
-I tested it by playing the phone: a fake "met Adi" note merged by itself and showed up in my Mac's inbox. A fake change to a file outside `inbox/` was left alone, like it should be.
+Then I tried it for real. From my phone, I asked Claude "what's due this week?" and it listed my actual deadlines from the vault. Then I told it my first IITM exam is on November 15. The note was on GitHub straight away and on my Mac three minutes later, already waiting to be filed. (Before that, I'd tested the guard rail: a fake change to a file outside `inbox/` was correctly left for me to review.)
 
 ### 6. Everything plugged in
 
