@@ -19,6 +19,16 @@ It's an Obsidian vault. Trackers, deadlines, lecture notes, people I meet, half-
 
 One rule runs the whole thing: **capture first, organize later.** Anything new goes into `inbox/`. I never decide where something belongs while I'm capturing it. An agent files it later.
 
+Everything else has a home:
+
+- `daily/` for brain dumps, `studies/` for courses and trackers, `projects/` for builds, `personal/` for people, internships and applications, `content/` for posts, `research/` for deep dives
+- `wiki/`: when the inbox fills up, `/wiki` compiles the raw captures into linked articles (Karpathy's LLM-wiki idea) and moves the originals to `archive/`
+- Lecture notes write themselves: [Margin](https://saksham.digital/margin), my lecture-notes extension, drops a finished note with the slides into the vault when a lecture ends, and `/watch` does the same for any YouTube video
+
+Around that sit a few "machines", each one a tracker file plus a skill that reads it: a daily brief, internships and applications, networking, content, open source, and my resume. I say `/opps` and Claude reads the opportunities tracker before it says anything.
+
+Inside Obsidian, 15 plugins do the rest. Dataview and Tasks turn notes into live tables and to-do lists, Templater stamps out new notes, Spaced Repetition turns notes into flashcards, Smart Connections finds related notes, and a Claude Code bridge lets agents read and write the open vault directly.
+
 ### 2. Memory: how Claude knows me
 
 Claude Code starts every session already knowing my situation, because three things get loaded before I type anything:
@@ -66,13 +76,23 @@ The fix needed no server. **The private GitHub repo is the bridge.**
 
 I tested it by playing the phone: a fake "met Adi" note merged by itself and showed up in my Mac's inbox. A fake change to a file outside `inbox/` was left alone, like it should be.
 
-### 6. What broke
+### 6. Everything plugged in
+
+For anyone who wants the full list:
+
+- **MCP servers (Claude):** vault search (ChromaDB), vault graph (LightRAG), the router, the live Obsidian bridge (while Obsidian is open), reference, screenpipe for screen memory, GitHub, Puppeteer for the browser, Hashnode for the blog, and a Discord channel
+- **MCP servers (Codex):** the same three vault servers, plus reference and screenpipe
+- **Connectors:** Gmail, Google Calendar, Google Drive, and Higgsfield for images
+- **Hooks (11):** restore context and sort the inbox at session start; block dangerous shell commands and nudge toward the knowledge graph before searching; auto-approve read-only actions with a small model; flag em dashes in anything I'll publish; archive the session and sync to GitHub after every reply; refresh `hot.md` after the context gets compacted; and agent-sync before every message
+- **Scheduled jobs (6):** re-index ChromaDB, LightRAG, a Gemini-embedding copy and the CLIP image index every evening; sync my competitive programming stats overnight; and a morning check that flags trackers I've stopped updating
+
+### 7. What broke
 
 - **The voice model starts blind.** Codex voice is two models: a fast voice model you talk to, and the agent behind it. The app starts the voice model with `includeStartupContext: false`. It only gets my context when it hands a task to the agent. So by voice, I ask in tasks: "check my notes and tell me..."
 - **macOS quietly blocks background jobs from your Desktop folder.** It killed my every-10-minutes sync timer on day one. Worse: while writing this, I found my main search index job had failed with the same error **120 nights in a row**. The search I relied on hadn't updated since May 13, and never told me. The fix was one line: point the job at the Python my other nightly jobs already use. It's fresh again.
 - **JARVIS**, see above. Lesson: decide where a thing lives before deciding what it does.
 
-### 7. Steal it
+### 8. Steal it
 
 - **agent-sync** (Claude and Codex share what you just said): [github.com/saksham10arora-dotcom/agent-sync](https://github.com/saksham10arora-dotcom/agent-sync)
 - **reference** by Kuber (search each other's history): [github.com/Kuberwastaken/reference](https://github.com/Kuberwastaken/reference)
