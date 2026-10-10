@@ -2,6 +2,7 @@
 title: Magic Matched DeepSeek V4 Pro Base With 50x Fewer FLOPs
 tags: [AI Systems, Efficiency, Pretraining, Benchmarks]
 date: 2026-09-10
+aliases: [blog/15_magic_matched_deepseek_v4_pro_with_50x_fewer_flops]
 ---
 
 Magic's latest pretraining run hit DeepSeek V4 Pro Base's eval numbers using about 50x fewer FLOPs to get there. On some held-out eval sets the efficiency gap runs as high as 127x.

@@ -2,6 +2,7 @@
 title: OpenAI's First Chip Wins on Latency, Not FLOPs
 tags: [Systems, Hardware, Inference, Latency]
 date: 2026-08-26
+aliases: [blog/12_openai_jalapeno_latency_not_flops]
 ---
 
 OpenAI's first custom silicon, codenamed Jalapeño, just posted benchmarks against Nvidia's Blackwell and Rubin: 1.7x to 3.6x lower end-to-end latency, and that's the number that should matter more than the headline perf-per-watt figure everyone's repeating.

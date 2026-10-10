@@ -2,6 +2,7 @@
 title: OpenAI's Astra Just Scored 100% on the Benchmark That Finds Real Zero-Days
 tags: [AI Safety, Security, Systems, Benchmarks]
 date: 2026-09-04
+aliases: [blog/14_openai_astra_critical_cyber_threshold]
 ---
 
 Astra hit a perfect score on ExploitBench this week, and on the way there it found two zero-day vulnerabilities nobody asked it to find.

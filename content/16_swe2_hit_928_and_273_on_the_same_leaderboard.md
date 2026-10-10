@@ -2,6 +2,7 @@
 title: SWE-2 Hit 92.8% and 27.3% on the Same Leaderboard
 tags: [AI Systems, Coding Agents, Benchmarks, Latency]
 date: 2026-09-14
+aliases: [blog/16_swe2_hit_928_and_273_on_the_same_leaderboard]
 ---
 
 Cognition shipped SWE-2 on September 10 and put two numbers on the same page: 92.8% on Terminal-Bench 2.1, and 27.3% on Terminal-Bench 4. Same model, same company, same week. That gap is the actual story.

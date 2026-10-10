@@ -2,6 +2,7 @@
 title: Cerebras CS-4 Shipped a 2 Microsecond Interconnect, and That's the Number That Matters
 tags: [Systems, Hardware, Inference, Latency]
 date: 2026-08-20
+aliases: [blog/09_cerebras_cs4_the_number_nobody_is_talking_about]
 ---
 
 Cerebras announced the CS-4 this week: 43.2 petabytes per second of memory bandwidth, 250 PFLOPS of compute, three WSE-3 Turbo wafers per system. Buried under those headline numbers is the one that actually explains why this thing is fast: wafer-to-wafer interconnect latency of 2 microseconds.

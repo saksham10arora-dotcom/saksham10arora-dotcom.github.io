@@ -2,6 +2,7 @@
 title: Gemini 4 Argon Costs the Same Per Token and Twice Per Task
 tags: [AI, LLMs, Evals, Inference]
 date: 2026-10-01
+aliases: [blog/23_gemini_4_argon_same_price_twice_the_bill]
 ---
 
 Google launched Gemini 4 Argon yesterday at $2 in and $10 out per million tokens, the exact same list price as GPT-6 Sol. On Artificial Analysis' runs, Argon costs $1.99 per Intelligence Index task. Sol costs $1.05.

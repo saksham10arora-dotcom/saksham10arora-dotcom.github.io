@@ -2,6 +2,7 @@
 title: JIT Compiling in 5 Microseconds, and Why That Number Sounded Familiar
 tags: [Systems, Performance, Compilers, Latency]
 date: 2026-08-24
+aliases: [blog/11_jit_compiling_in_5_microseconds]
 ---
 
 A JIT compiler that turns a regex into machine code in about 5 microseconds, and the generated code runs within 20% of hand-written assembly. That's the whole pitch of a post that hit the top of Hacker News this week, and it's the kind of number that makes me stop scrolling.
