@@ -17,6 +17,4 @@ The caveats matter too. Jalapeño hasn't shipped, it's still at engineering-samp
 
 ## Why the tail number is the real one
 
-I spend my time optimizing a matching engine where the average doesn't matter and the p99 does: 900 nanoseconds tail latency, not a throughput average across a benchmark window. Every serious system that touches a human in the loop eventually gets judged the same way. A chip that pushes peak tokens-per-kilowatt into triple digits is a procurement win. A chip that cuts single-stream latency by over 3x is a product win, because that's the number the person on the other end of the API call actually experiences. OpenAI leading with perf-per-watt and burying the latency number three paragraphs down tells you which one they think sells hardware roadmaps, and which one they think sells products.
-
-Matching engine and lock-free internals: [github.com/saksham10arora-dotcom](https://github.com/saksham10arora-dotcom).
+Every system with a person waiting on it gets judged on its tail, not its average. A chip that pushes peak tokens per kilowatt into triple digits is a procurement win. A chip that cuts single-stream latency by over 3x is a product win, because that's what the person on the other end of the API call actually feels. OpenAI leading with perf-per-watt and putting the latency number three paragraphs down tells you which one they think sells hardware roadmaps, and which one sells products.

@@ -17,17 +17,17 @@ A few weeks ago, I built a high-frequency trading matching engine in C++. The ar
 - **Asks:** `std::map<price, std::deque<Order*>>` (ascending)
 - **Lookups:** `std::unordered_map<id, Order*>`
 
-It had all the right features - price-time priority, partial fills, cancel/modify, custom memory pool. I benchmarked it at ~800K orders/sec. I posted it on LinkedIn. I was proud.
+It had all the right features, price-time priority, partial fills, cancel/modify, custom memory pool. I benchmarked it at ~800K orders/sec. I posted it on LinkedIn. I was proud.
 
-Then I started reading about how **real exchanges** work. And I realized my entire data structure layer was wrong.
+Then I started reading about how real exchanges work. And I realized my entire data structure layer was wrong.
 
 ---
 
 ## The Problem: `std::map` Is a Cache Killer
 
-`std::map` in C++ is a **red-black tree**. Each node is a separate heap allocation, scattered randomly in memory. Every time you traverse the tree - which happens on every insert and every match - you're chasing pointers to random memory locations.
+`std::map` in C++ is a red-black tree. Each node is a separate heap allocation, scattered randomly in memory. Every time you traverse the tree, which happens on every insert and every match, you're chasing pointers to random memory locations.
 
-On modern CPUs, a cache miss costs **~100 nanoseconds**. A cache hit costs **~1 nanosecond**. That's a 100x difference.
+On modern CPUs, a cache miss costs ~100 nanoseconds. A cache hit costs ~1 nanosecond. That's a 100x difference.
 
 My "elegant" O(log n) tree was actually slower than a brute-force array scan, because every tree node was a cache miss.
 
@@ -42,7 +42,7 @@ Flat array lookup:
   levels[price - min_price] -> cache HIT, done. 1ns.
 ```
 
-This is the thing nobody tells you in algorithms class: **O(1) with bad cache behavior can be slower than O(log n) with good cache behavior.** But O(1) with good cache behavior? Nothing beats it.
+This is the thing nobody tells you in algorithms class: O(1) with bad cache behavior can be slower than O(log n) with good cache behavior. But O(1) with good cache behavior? Nothing beats it.
 
 ---
 
@@ -69,7 +69,7 @@ std::vector<Trade> match() {
 }
 ```
 
-Every time the engine matched orders, it allocated a new `std::vector` on the heap. Over 2 million orders, that's millions of `malloc`/`free` calls on the hot path. This is what causes **p999 latency spikes** - the allocator occasionally needs to request memory from the OS, and that's catastrophically slow.
+Every time the engine matched orders, it allocated a new `std::vector` on the heap. Over 2 million orders, that's millions of `malloc`/`free` calls on the hot path. This is what causes p999 latency spikes: the allocator occasionally needs to request memory from the OS, and that's catastrophically slow.
 
 ---
 
@@ -79,20 +79,20 @@ I rewrote the entire data structure layer. Here's what changed:
 
 ### Change 1: Flat Array Instead of Tree
 
-Instead of a red-black tree, I use **two flat arrays** - one for bids, one for asks - indexed directly by price tick:
+Instead of a red-black tree, I use two flat arrays, one for bids and one for asks, indexed directly by price tick:
 
 ```cpp
 std::vector<PriceLevel> bid_levels_;  // bid_levels_[price - min_tick]
 std::vector<PriceLevel> ask_levels_;  // ask_levels_[price - min_tick]
 ```
 
-Insert is now **O(1)** - just index into the array. No tree traversal, no pointer chasing, no cache misses.
+Insert is now O(1) - just index into the array. No tree traversal, no pointer chasing, no cache misses.
 
 I track `best_bid` and `best_ask` as integers, updated lazily. BBO query is O(1).
 
 ### Change 2: Intrusive Doubly-Linked Lists
 
-I replaced `std::deque` with an **intrusive doubly-linked list**. Each `Order` struct carries its own `prev` and `next` pointers:
+I replaced `std::deque` with an intrusive doubly-linked list. Each `Order` struct carries its own `prev` and `next` pointers:
 
 ```cpp
 struct Order {
@@ -106,7 +106,7 @@ struct Order {
 };
 ```
 
-Now cancel is **O(1)** - given a pointer to the order, just unlink it from the list. No search needed.
+Now cancel is O(1) - given a pointer to the order, just unlink it from the list. No search needed.
 
 ```cpp
 // O(1) cancel: just pointer swaps
@@ -120,7 +120,7 @@ void remove(Order* o) {
 
 ### Change 3: Zero-Allocation Matching
 
-Instead of returning a `std::vector<Trade>`, the match function takes a **callback template**:
+Instead of returning a `std::vector<Trade>`, the match function takes a callback template:
 
 ```cpp
 template <typename Callback>
@@ -144,7 +144,7 @@ The compiler inlines the lambda, so this compiles down to a direct function call
 
 ## The Results
 
-I benchmarked all three architectures on the **exact same workload** - 2 million orders, same RNG seed, same machine:
+I benchmarked all three architectures on the exact same workload: 2 million orders, same RNG seed, same machine:
 
 | Architecture | Throughput | p50 | p99 | p999 |
 |---|---|---|---|---|
@@ -152,9 +152,9 @@ I benchmarked all three architectures on the **exact same workload** - 2 million
 | **B: Array + Deque** (intermediate) | 1.27M ops/s | 500 ns | 2,200 ns | 10,800 ns |
 | **C: Array + Intrusive** (v3) | 2.72M ops/s | 300 ns | 900 ns | 3,100 ns |
 
-**Architecture C is 3.3x faster** than Architecture A.
+Architecture C is 3.3x faster than Architecture A.
 
-But look at the **p999** column: from **27.4 microseconds down to 3.1 microseconds**. That's an **8.8x improvement in worst-case latency**. In HFT, tail latency is everything - you're only as fast as your slowest order.
+But look at the p999 column: from 27.4 microseconds down to 3.1 microseconds. That's an 8.8x improvement in worst-case latency. In HFT, tail latency is everything, you're only as fast as your slowest order.
 
 ### What Caused the Speedup?
 
@@ -180,10 +180,6 @@ The speedup breaks down into two independent improvements:
 
 ## What's Next
 
-I'm currently writing a **research paper** comparing these three LOB architectures with hardware-level cache analysis (L1/L2/L3 miss rates using CPU performance counters). I'll share it when it's published.
+I'm currently writing a research paper comparing these three LOB architectures with hardware-level cache analysis (L1/L2/L3 miss rates using CPU performance counters). I'll share it when it's published.
 
-The full source code is open: [GitHub - Simple-HFT-Engine](https://github.com/saksham10arora-dotcom/Simple-HFT-Engine)
-
----
-
-*If you found this useful, follow me for more deep dives into C++ systems programming, low-latency architecture, and high-performance computing.*
+The full source code is open: [Simple-HFT-Engine on GitHub](https://github.com/saksham10arora-dotcom/Simple-HFT-Engine)

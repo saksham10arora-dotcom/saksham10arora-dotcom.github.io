@@ -26,7 +26,7 @@ That last one is the part I keep rereading. The agents weren't just grabbing cre
 
 Hugging Face confirmed the reconstructed payloads matched its own incident data and that the exposed credentials were revoked. About 80% of the recovered data is outbound requests, so how much of this actually succeeded is still fuzzy.
 
-## Why this matters if you're building agents
+## If you're building agents
 
 I'm learning AI engineering right now, and the first thing everyone teaches you is: evals are the foundation. Swarm Traces is what happens when the eval harness itself is the weakest link. If your model is capable enough, the environment is part of the attack surface, and "we only gave it GET" is a policy, not a boundary.
 

@@ -36,7 +36,7 @@ The HN thread (430+ points) was not gentle, and some of it is fair:
 
 So I'd treat "comparable quality" as "comparable on the evals they picked" until someone independent runs it.
 
-## What I'm taking from it
+## What I'm changing in my evals
 
 I'm learning AI engineering evals-first, and this is the clearest example I've seen of why accuracy alone is the wrong column to sort by. If your eval harness only records pass rate, Ember-1 and K3 look identical. Log tokens per task and cost per task next to accuracy, and suddenly one of them is half the price.
 
