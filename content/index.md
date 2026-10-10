@@ -24,7 +24,7 @@ aliases: [blog/index]
   </g>
 </svg>
 
-Hey. I'm **Saksham Arora**, a data scientist, quant researcher and AI engineer. I read AI model launches through the numbers, past the headline to the per-task cost and the part of the eval nobody quoted. I also write up the tools I build to study and work faster.
+Hey. I'm **Saksham Arora**, a data scientist, quant researcher and AI engineer. I read AI model launches through the numbers, past the headline to the per-task cost and the caveats in the eval. I also write up the tools I build to study and work faster.
 
 **Follow along:** [RSS](https://saksham.digital/blog/index.xml) · [X @nerfsaksham](https://x.com/nerfsaksham) · [GitHub](https://github.com/saksham10arora-dotcom). A new post most weeks.
 

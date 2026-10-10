@@ -45,8 +45,8 @@ This is why I used raw pointers with a custom arena allocator in my [HFT Matchin
 
 ```cpp
 auto p1 = std::make_unique<Order>(10000, 50);
-auto p2 = p1;              // ❌ COMPILE ERROR! Can't copy unique_ptr
-auto p2 = std::move(p1);   // ✅ Ownership transferred. p1 is now null.
+auto p2 = p1;              // compile error: Can't copy unique_ptr
+auto p2 = std::move(p1);   // ok: ownership transferred. p1 is now null.
 ```
 
 This is a **compile-time guarantee** that only one pointer owns the object. No reference counting. No runtime checks. The language enforces it.
@@ -234,19 +234,19 @@ The cache holds `weak_ptr`, so it doesn't keep data alive unnecessarily. When no
 This is the part most people get wrong:
 
 ```cpp
-// ✅ Function just READS data: pass by const reference
+// Function just READS data: pass by const reference
 void print(const Order& order);
 
-// ✅ Function MODIFIES data: pass by reference
+// Function MODIFIES data: pass by reference
 void update(Order& order);
 
-// ✅ Function TAKES ownership: pass unique_ptr by value
+// Function TAKES ownership: pass unique_ptr by value
 void consume(std::unique_ptr<Order> order);
 
-// ✅ Function SHARES ownership: pass shared_ptr by value
+// Function SHARES ownership: pass shared_ptr by value
 void share(std::shared_ptr<Order> order);
 
-// ❌ DON'T do this: pointless indirection
+// Don't do this: pointless indirection
 void f(const std::unique_ptr<Order>& p);  // Just use const Order&
 void f(const std::shared_ptr<Order>& p);  // Just use const Order&
 ```
@@ -261,7 +261,7 @@ void f(const std::shared_ptr<Order>& p);  // Just use const Order&
 |---|---|---|---|
 | Size | 8 bytes | 16 bytes | 8 bytes |
 | Dereference | 0 ns | 0 ns | 0 ns |
-| Copy | ❌ (compile error) | 10-20 ns (atomic) | 0 ns |
+| Copy | No (compile error) | 10-20 ns (atomic) | 0 ns |
 | Move | 0 ns | 0 ns | 0 ns |
 | Destroy | ~1 ns (delete) | ~10 ns (atomic + delete) | manual |
 | Thread safety | N/A | Control block only | N/A |
@@ -277,8 +277,3 @@ void f(const std::shared_ptr<Order>& p);  // Just use const Order&
 4. **Pass by `const T&` in function parameters**, not by smart pointer, unless you're transferring ownership.
 5. **In hot paths** (game loops, HFT matching, real-time audio): profile first, but consider arena allocators with raw pointers if `shared_ptr` atomics show up in your profile.
 
----
-
-*Follow me for weekly deep dives into C++ systems programming, low-latency architecture, and high-performance computing.*
-
-**Tags:** `#cpp` `#smart-pointers` `#memory-management` `#performance` `#systems-programming`

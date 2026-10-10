@@ -29,7 +29,7 @@ Either way, the fix that works today is a workaround, not a patch: strip the int
 
 ---
 
-## Why this matters if you're building on top of any of this
+## If you build on top of these models
 
 I spend a lot of time thinking about the gap between "the benchmark number" and "the number a real request actually experiences" (I wrote about the same gap in LLM latency benchmarking a few weeks back). This bug is that same failure mode wearing a different costume: a hidden discontinuity in the serving stack that a black-box eval will never catch, because most evals don't log token count against correctness at the individual-run level. You'd see your pass rate drop a few points and blame the model, not the infrastructure underneath it.
 

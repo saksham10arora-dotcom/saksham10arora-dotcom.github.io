@@ -1,5 +1,5 @@
 ---
-title: A Free Mystery Model Just Beat GPT-5.6 on Coding, and Nobody Audited the Number
+title: A Free Mystery Model Beat GPT-5.6 on Coding. Nobody Has Audited the Number Yet
 tags: [LLM, Benchmarks, Systems]
 date: 2026-08-22
 aliases: [blog/10_ox_alpha_free_mystery_model_beat_gpt56]

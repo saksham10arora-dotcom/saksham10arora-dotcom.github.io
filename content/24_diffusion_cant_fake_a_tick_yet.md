@@ -34,7 +34,7 @@ One-step generation, conditioned on 10,240 real events of context, looks good. A
 
 I like that they published the failure modes. Most "synthetic data" posts show one pretty chart and stop.
 
-## What I'm taking from it
+## Why I'm watching this
 
 If you work with tabular or event data, this is the useful lesson: before picking a generative model, check how much of your data sits on exact values. Counts, ticks, categories, zeros, rounded prices. Diffusion and flow models assume a density. Point masses need to be pulled out and handled by a classifier, or the model spends all its capacity faking them.
 
