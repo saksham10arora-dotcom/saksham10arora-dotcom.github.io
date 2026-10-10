@@ -70,6 +70,13 @@ export default (() => {
       <head>
         <title>{title}</title>
         <meta charSet="utf-8" />
+        {/* the blog moved to saksham.digital/blog; the old subdomain hands visitors over.
+            saksham.digital proxies these same pages, so the check never fires there. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(location.hostname==="blog.saksham.digital")location.replace("https://saksham.digital/blog"+location.pathname.replace(/^\\/blog(?=\\/|$)/,"")+location.search+location.hash)`,
+          }}
+        />
         {cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && (
           <>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
