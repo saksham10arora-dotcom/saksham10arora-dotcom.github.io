@@ -69,12 +69,12 @@ Before this, I built JARVIS: a Discord bot running Claude, screen memory, and a 
 
 The fix needed no server. **The private GitHub repo is the bridge.**
 
-- After every Claude reply on my Mac, a sync script pushes my notes plus a copy of the memory files to the repo.
+- After every reply on my Mac, a sync script pushes my notes plus a copy of the memory files to the repo.
 - On my phone, Codex in the ChatGPT app and Claude Code on the web both work on that repo in the cloud. They read the same memory, so they know me with the Mac off.
 - When I tell the phone something new, the agent writes exactly one note into `inbox/`. A GitHub Action merges changes that only touch `inbox/` automatically. Anything else waits for me.
 - Next time I open my Mac, the note syncs down and Claude files it in the right place.
 
-Then I tried it for real. From my phone, I asked Claude "what's due this week?" and it listed my actual deadlines from the vault. Then I told it my first IITM exam is on November 15. The note was on GitHub straight away and on my Mac three minutes later, already waiting to be filed. (Before that, I'd tested the guard rail: a fake change to a file outside `inbox/` was correctly left for me to review.)
+Then I tried it for real. From my phone, no Mac needed, I asked Claude "what's due this week?" and it listed my actual deadlines from the vault. Then I told it my first IITM exam is on November 15. The note was on GitHub straight away and on my Mac three minutes later, already waiting to be filed. (Before that, I'd tested the guard rail: a fake change to a file outside `inbox/` was correctly left for me to review.)
 
 ### 6. Everything plugged in
 
