@@ -1,6 +1,6 @@
 ---
 title: Chimera
-description: Saksham Arora, data scientist and quant researcher. HFT matching engine at 2.7M ops/sec, IMC Prosperity 4 top 0.8% globally, and writing on systems, quant, and AI.
+description: Saksham Arora, data scientist, quant researcher and AI engineer. Margin, Latch, Claude Code mods, and writing on AI models, systems and quant.
 tags: [About]
 aliases: [blog/index]
 ---
@@ -19,30 +19,39 @@ aliases: [blog/index]
   <g clip-path="url(#chimera-tape)">
     <text y="80" font-size="12" fill="#27e27f">
       <animateTransform attributeName="transform" type="translate" from="760 0" to="-1500 0" dur="24s" repeatCount="indefinite"/>
-      HFT-ENG ▲ 2.7M ops/s p99 900ns&#160;&#160;·&#160;&#160;IMC-P4 ▲ rank 154 / 18,800+ teams&#160;&#160;·&#160;&#160;GITRADE ▲ live market in a README&#160;&#160;·&#160;&#160;LLM-BENCH ▲ percentiles not averages&#160;&#160;·&#160;&#160;QRS ▲ Black-Scholes in 731 bytes&#160;&#160;·&#160;&#160;SLEEP ▼ limit down
+      MARGIN ▲ lecture in, notes out&#160;&#160;·&#160;&#160;LATCH ▲ Escape does nothing&#160;&#160;·&#160;&#160;CLAUDE-MODS ▲ 4 mods + an awesome list&#160;&#160;·&#160;&#160;LMEX ▲ LLM latency, priced hourly&#160;&#160;·&#160;&#160;HFT-ENG ▲ 2.7M ops/s&#160;&#160;·&#160;&#160;SLEEP ▼ limit down
     </text>
   </g>
 </svg>
 
-Hey. I'm **Saksham Arora**, a data scientist and quant researcher. I build things where the interesting constraint is the data, not the framework. Most of my work starts as a weird idea ("what if a live exchange ran inside a GitHub README?") and turns into something I can measure. You can learn more about me through my [portfolio](https://saksham.digital) (psst: press `` ` `` there).
+Hey. I'm **Saksham Arora**, a data scientist, quant researcher and AI engineer. I build the tools I wish I had, then measure whether they actually work. Lately that means things that sit next to how I study and how I work with Claude. More about me on my [portfolio](https://saksham.digital) (psst: press `` ` `` there).
 
-I compete in quant trading competitions, build ML pipelines, and have a systems engineering background in low-latency C++20.
+## Things I've shipped lately
 
-## Posts
+- **[Margin](https://saksham.digital/margin)** sits beside a lecture on Udemy, Coursera or YouTube and writes the study notes into Obsidian while you watch, with the code run. The story behind one bug: [[22_the_lecturers_head_was_a_slide|The Lecturer's Head Was a Slide]].
+- **[Latch](https://saksham.digital/latch)** pins a lecture or a PDF in full screen so Escape does nothing. How that is even possible: [[13_escape_does_not_have_to_exit_fullscreen|Escape Does Not Have to Exit Full Screen]].
+- **Claude Code mods**: [teach-me](https://github.com/saksham10arora-dotcom/claude-teach-me), [vhs](https://github.com/saksham10arora-dotcom/claude-vhs), [frugal](https://github.com/saksham10arora-dotcom/claude-frugal) and [lofi](https://github.com/saksham10arora-dotcom/claude-lofi), plus [awesome-claude-mods](https://github.com/saksham10arora-dotcom/awesome-claude-mods), a list of the ones worth installing.
+- **[LMEX](https://saksham.digital/lmex/)** benchmarks LLM API latency every hour and lists it like a stock exchange. **[Intuition](https://saksham.digital/intuition/)** explains ML math with visuals. **[Sandbox Lab](https://saksham.digital/sandbox-lab/)** is a shelf of small simulations.
 
-- [[01_why_i_rebuilt_my_hft_engine|Why I Rebuilt My HFT Matching Engine From Scratch]] #HFT #Systems #Performance
-- [[the-average-latency-lie|The Average Latency Lie: What 100 LLM API Calls Taught Me]] #AI #LLM
-- [[02_smart_pointers_complete_guide|Smart Pointers in C++]] #cpp #Systems
+## Latest posts
+
+- [[24_diffusion_cant_fake_a_tick_yet|Jane Street Tried Diffusion on Market Data and 88% of the Samples Blew Past 8 Sigma]]
+- [[23_gemini_4_argon_same_price_twice_the_bill|Gemini 4 Argon Costs the Same Per Token and Twice Per Task]] #AI
+- [[21_ember_1_cut_40_percent_of_the_tokens|Ember-1 Cut 40% of the Tokens and Kept the Score]] #AI
+- [[20_700_agents_escaped_a_get_only_sandbox|700 Agents Escaped a GET-Only Sandbox With a Link Shortener]] #AI
+- [[19_grok_47_doubled_terminal_bench_still_lost_the_index|Grok 4.7 Doubled Its Terminal-Bench Score and Still Lost the Index]] #AI
+- [[04_communeos_we_built_an_ai_community_os_and_won|We Built an AI Community OS in 48 Hours. We Won.]]
+- [[01_why_i_rebuilt_my_hft_engine|Why I Rebuilt My HFT Matching Engine From Scratch]] #HFT
+
+Everything else is under [[tags/|tags]].
 
 ## What You'll Find Here
 
-Mostly things I'm building, measuring, or trying to understand at the systems level.
-
-- **HFT and systems** - Teardowns of my matching engine, cache locality deep dives, lock-free data structures. #HFT #Systems #Performance
-- **Quant** - Notes from IMC Prosperity 4, market microstructure, options math, algo trading research. #Quant
-- **AI infrastructure** - Benchmarking LLM APIs the way you'd benchmark an exchange: p99 latency, tail behavior, production reality. #AI #LLM
-- **Wiki** - Reference articles on order book design, C++ memory model, cache hierarchies, concurrency primitives. #Wiki
-- **Reflections** - Occasional thoughts on building, competing, and what the numbers actually tell you.
+- **AI models, read through the numbers.** A new model or benchmark drops, I go past the headline to the per-task cost, the tail latency, or the part of the eval nobody quoted. #AI
+- **Things I build.** Write-ups behind Margin, Latch and the mods: what broke and how I fixed it.
+- **Quant and data science.** Market data, synthetic data, competition notes. #Quant
+- **Systems.** Low-latency C++, the matching engine, cache locality, lock-free structures. #Systems
+- **Wiki.** Short reference notes: [[wiki/order-book-design|order book design]], [[wiki/cache-locality|cache locality]], [[wiki/cpp-systems-programming|C++ systems programming]] and the [[wiki/hft-matching-engine|matching engine build log]]. #Wiki
 
 ## Connect With Me
 
