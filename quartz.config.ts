@@ -16,7 +16,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "blog.saksham.digital",
+    baseUrl: "saksham.digital/blog",
     ignorePatterns: [
       "private",
       "templates",
