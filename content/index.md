@@ -1,6 +1,6 @@
 ---
 title: Chimera
-description: Saksham Arora, data scientist, quant researcher and AI engineer. Margin, Latch, Claude Code mods, and writing on AI models, systems and quant.
+description: Saksham Arora reads AI model launches through the numbers and writes up the tools he builds. Data scientist, quant researcher and AI engineer.
 tags: [About]
 aliases: [blog/index]
 ---
@@ -10,51 +10,54 @@ aliases: [blog/index]
     <clipPath id="chimera-tape"><rect x="1" y="56" width="758" height="39"/></clipPath>
     <clipPath id="chimera-type"><rect x="0" y="14" width="0" height="30"><animate attributeName="width" from="0" to="760" begin="0.3s" dur="1.2s" fill="freeze"/></rect></clipPath>
   </defs>
-  <rect x="0.5" y="0.5" width="759" height="95" rx="10" fill="#0b0f0d" stroke="#27e27f" stroke-opacity="0.25"/>
-  <text x="20" y="36" font-size="15" clip-path="url(#chimera-type)"><tspan fill="#27e27f">SKSM@CHIMERA:~$</tspan><tspan fill="#e8fff2"> cat /etc/motd</tspan></text>
-  <rect x="330" y="23" width="9" height="16" fill="#27e27f" opacity="0">
+  <rect x="0.5" y="0.5" width="759" height="95" rx="10" fill="#0e0c14" stroke="#c2a4ff" stroke-opacity="0.25"/>
+  <text x="20" y="36" font-size="15" clip-path="url(#chimera-type)"><tspan fill="#c2a4ff">SKSM@CHIMERA:~$</tspan><tspan fill="#f7f5fc"> cat /etc/motd</tspan></text>
+  <rect x="330" y="23" width="9" height="16" fill="#ffbe7a" opacity="0">
     <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.01;0.5;0.51;1" dur="1.1s" begin="1.6s" repeatCount="indefinite"/>
   </rect>
-  <line x1="0" y1="56" x2="760" y2="56" stroke="#27e27f" stroke-opacity="0.15"/>
+  <line x1="0" y1="56" x2="760" y2="56" stroke="#c2a4ff" stroke-opacity="0.15"/>
   <g clip-path="url(#chimera-tape)">
-    <text y="80" font-size="12" fill="#27e27f">
+    <text y="80" font-size="12" fill="#c2a4ff">
       <animateTransform attributeName="transform" type="translate" from="760 0" to="-1500 0" dur="24s" repeatCount="indefinite"/>
       MARGIN ▲ lecture in, notes out&#160;&#160;·&#160;&#160;LATCH ▲ Escape does nothing&#160;&#160;·&#160;&#160;CLAUDE-MODS ▲ 4 mods + an awesome list&#160;&#160;·&#160;&#160;LMEX ▲ LLM latency, priced hourly&#160;&#160;·&#160;&#160;HFT-ENG ▲ 2.7M ops/s&#160;&#160;·&#160;&#160;SLEEP ▼ limit down
     </text>
   </g>
 </svg>
 
-Hey. I'm **Saksham Arora**, a data scientist, quant researcher and AI engineer. I build the tools I wish I had, then measure whether they actually work. Lately that means things that sit next to how I study and how I work with Claude. More about me on my [portfolio](https://saksham.digital) (psst: press `` ` `` there).
+Hey. I'm **Saksham Arora**, a data scientist, quant researcher and AI engineer. I read AI model launches through the numbers, past the headline to the per-task cost and the part of the eval nobody quoted. I also write up the tools I build to study and work faster.
+
+**Follow along:** [RSS](https://saksham.digital/blog/index.xml) · [X @nerfsaksham](https://x.com/nerfsaksham) · [GitHub](https://github.com/saksham10arora-dotcom). A new post most weeks.
+
+## Start here
+
+- [[20_700_agents_escaped_a_get_only_sandbox|700 Agents Escaped a GET-Only Sandbox With a Link Shortener]]
+- [[23_gemini_4_argon_same_price_twice_the_bill|Gemini 4 Argon Costs the Same Per Token and Twice Per Task]]
+- [[13_escape_does_not_have_to_exit_fullscreen|Escape Does Not Have to Exit Full Screen]]
 
 ## Things I've shipped lately
 
 - **[Margin](https://saksham.digital/margin)** sits beside a lecture on Udemy, Coursera or YouTube and writes the study notes into Obsidian while you watch, with the code run. The story behind one bug: [[22_the_lecturers_head_was_a_slide|The Lecturer's Head Was a Slide]].
-- **[Latch](https://saksham.digital/latch)** pins a lecture or a PDF in full screen so Escape does nothing. How that is even possible: [[13_escape_does_not_have_to_exit_fullscreen|Escape Does Not Have to Exit Full Screen]].
+- **[Latch](https://saksham.digital/latch)** pins a lecture or a PDF in full screen so Escape does nothing.
 - **Claude Code mods**: [teach-me](https://github.com/saksham10arora-dotcom/claude-teach-me), [vhs](https://github.com/saksham10arora-dotcom/claude-vhs), [frugal](https://github.com/saksham10arora-dotcom/claude-frugal) and [lofi](https://github.com/saksham10arora-dotcom/claude-lofi), plus [awesome-claude-mods](https://github.com/saksham10arora-dotcom/awesome-claude-mods), a list of the ones worth installing.
 - **[LMEX](https://saksham.digital/lmex/)** benchmarks LLM API latency every hour and lists it like a stock exchange. **[Intuition](https://saksham.digital/intuition/)** explains ML math with visuals. **[Sandbox Lab](https://saksham.digital/sandbox-lab/)** is a shelf of small simulations.
 
 ## Latest posts
 
 - [[24_diffusion_cant_fake_a_tick_yet|Jane Street Tried Diffusion on Market Data and 88% of the Samples Blew Past 8 Sigma]]
-- [[23_gemini_4_argon_same_price_twice_the_bill|Gemini 4 Argon Costs the Same Per Token and Twice Per Task]] #AI
-- [[21_ember_1_cut_40_percent_of_the_tokens|Ember-1 Cut 40% of the Tokens and Kept the Score]] #AI
-- [[20_700_agents_escaped_a_get_only_sandbox|700 Agents Escaped a GET-Only Sandbox With a Link Shortener]] #AI
-- [[19_grok_47_doubled_terminal_bench_still_lost_the_index|Grok 4.7 Doubled Its Terminal-Bench Score and Still Lost the Index]] #AI
-- [[04_communeos_we_built_an_ai_community_os_and_won|We Built an AI Community OS in 48 Hours. We Won.]]
-- [[01_why_i_rebuilt_my_hft_engine|Why I Rebuilt My HFT Matching Engine From Scratch]] #HFT
+- [[21_ember_1_cut_40_percent_of_the_tokens|Ember-1 Cut 40% of the Tokens and Kept the Score]]
+- [[19_grok_47_doubled_terminal_bench_still_lost_the_index|Grok 4.7 Doubled Its Terminal-Bench Score and Still Lost the Index]]
+- [[18_pinterest_and_nvidia_precomputed_their_way_to_85x|Pinterest and NVIDIA Precomputed Their Way to an 85x Speedup]]
+- [[17_coreweave_put_16635_tokens_per_gpu_on_one_rack|CoreWeave Put 16,635 Tokens Per GPU on a Single Rack]]
+- [[16_swe2_hit_928_and_273_on_the_same_leaderboard|SWE-2 Hit 92.8% and 27.3% on the Same Leaderboard]]
 
-Everything else is under [[tags/|tags]].
+I write about #AI, #Quant, #Systems and the things I build. Everything is under [[tags/|tags]], and there's a small [[wiki/index|wiki]] of reference notes.
 
-## What You'll Find Here
+## For AI agents
 
-- **AI models, read through the numbers.** A new model or benchmark drops, I go past the headline to the per-task cost, the tail latency, or the part of the eval nobody quoted. #AI
-- **Things I build.** Write-ups behind Margin, Latch and the mods: what broke and how I fixed it.
-- **Quant and data science.** Market data, synthetic data, competition notes. #Quant
-- **Systems.** Low-latency C++, the matching engine, cache locality, lock-free structures. #Systems
-- **Wiki.** Short reference notes: [[wiki/order-book-design|order book design]], [[wiki/cache-locality|cache locality]], [[wiki/cpp-systems-programming|C++ systems programming]] and the [[wiki/hft-matching-engine|matching engine build log]]. #Wiki
+Start with [llms.txt](https://saksham.digital/blog/llms.txt). Every post is also available as raw markdown: add `.md` to its URL.
 
-## Connect With Me
+## Connect
 
-[GitHub](https://github.com/saksham10arora-dotcom) · [LinkedIn](https://linkedin.com/in/saksham-arora10) · [X](https://x.com/saksham10arora) · saksham10arora@gmail.com
+[GitHub](https://github.com/saksham10arora-dotcom) · [LinkedIn](https://linkedin.com/in/saksham-arora10) · [X](https://x.com/nerfsaksham) · saksham10arora@gmail.com
 
 <sub>market data delayed by 0ns · this blog is not financial advice</sub>
