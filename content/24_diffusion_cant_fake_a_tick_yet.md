@@ -3,6 +3,7 @@ title: Jane Street Tried Diffusion on Market Data and 88% of the Samples Blew Pa
 tags: [Data Science, Generative Models, Market Data]
 date: 2026-10-10
 aliases: [blog/24_diffusion_cant_fake_a_tick_yet]
+seoTitle: "Jane Street's Diffusion Test: 88% of Samples Past 8 Sigma"
 ---
 
 Jane Street just published a writeup on generating synthetic order book events with autoregressive diffusion. Their first attempt with standard DDPM produced samples where 88 to 95% of the generated values landed more than 8 standard deviations from the mean. Real data basically never does that.

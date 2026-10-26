@@ -1,6 +1,7 @@
 ---
 title: "HFT Matching Engine: Build Log and Lessons"
 tags: [hft, cpp, systems, matching-engine]
+description: "Build log of a C++ limit order book matching engine: three architectures, 823K to 2.72M orders/sec, p999 latency from 27.4μs to 3.1μs."
 ---
 
 ## Summary

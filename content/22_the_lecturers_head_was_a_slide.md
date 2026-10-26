@@ -3,6 +3,7 @@ title: The Lecturer's Head Was a Slide
 tags: [AI Engineering, Chrome Extensions, Obsidian, Debugging]
 date: 2026-09-30
 aliases: [blog/22_the_lecturers_head_was_a_slide]
+description: "I built Margin, a browser extension that turns lectures into Obsidian study notes with the crux, answers from the lecture and a flashcard quiz."
 ---
 
 I watch lectures at 1.75x and I do not take notes. Pausing to write breaks the thing that makes watching work, so the honest version of my study system was: watch, feel like I understood, forget by Thursday.

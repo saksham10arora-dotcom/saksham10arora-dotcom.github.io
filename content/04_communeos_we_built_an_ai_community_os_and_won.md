@@ -3,6 +3,7 @@ title: "We Built an AI Community OS in 48 Hours. We Won."
 date: 2026-06-27
 tags: [hackathon, ai, fastapi, nextjs, llm, python, sqlite, chromadb]
 aliases: [blog/04_communeos_we_built_an_ai_community_os_and_won]
+description: "Six AI agents, a live SQLite backend and four resumes parsed in front of the judges: how our team built CommuneOS in 48 hours and won."
 ---
 
 > Six AI agents. A live SQLite backend. Four teammate resumes uploaded live in front of judges, and all four parsed correctly and personalized on the spot. Here's everything that happened.

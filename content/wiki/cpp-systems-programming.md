@@ -1,6 +1,7 @@
 ---
 title: "C++ Systems Programming"
 tags: [cpp, systems, performance]
+description: "Systems programming in C++: manual memory management, cache-aware data structures, lock-free concurrency and zero-overhead abstractions."
 ---
 
 ## Summary

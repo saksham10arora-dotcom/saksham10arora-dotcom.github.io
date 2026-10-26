@@ -3,6 +3,7 @@ title: GPT-5.6 Beats Claude by 13 Points on One Benchmark, Loses by 16 on Anothe
 tags: [LLM, Benchmarks, Systems, Inference]
 date: 2026-07-13
 aliases: [blog/07_gpt56_three_tiers_three_answers]
+seoTitle: "GPT-5.6 vs Claude: +13 on One Benchmark, -16 on Another"
 ---
 
 > Sol, the top GPT-5.6 tier, scores 53.6 on Agents' Last Exam, 13.1 points above Claude Fable 5. On SWE-bench Pro, released the same week, Fable 5 beats Sol 80.3% to 64.6%, a 15.7 point gap in the other direction. OpenAI is reportedly auditing the second benchmark.

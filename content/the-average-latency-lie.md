@@ -3,6 +3,7 @@ title: "The Average Latency Lie: What 100 LLM API Calls Taught Me About Benchmar
 tags: [LLM, Benchmarking, Latency, Systems, AI]
 date: 2026-06-18
 aliases: [blog/the-average-latency-lie]
+seoTitle: "The Average Latency Lie: 100 LLM API Calls on Benchmarking"
 ---
 
 > I benchmarked an LLM API 100 times. The mean said 1.7 seconds. The median said 2.2 seconds. If that ordering looks impossible to you, good. That instinct is the whole point of this post.

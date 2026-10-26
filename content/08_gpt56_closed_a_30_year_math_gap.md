@@ -3,6 +3,7 @@ title: GPT-5.6 Closed a 30-Year Math Gap, and the Lean Proof Is the Real Result
 tags: [LLM, Optimization, Formal Verification, Quant]
 date: 2026-07-21
 aliases: [blog/08_gpt56_closed_a_30_year_math_gap]
+seoTitle: "GPT-5.6 Closed a 30-Year Math Gap; the Lean Proof Is the Result"
 ---
 
 > GPT-5.6 Sol Pro proved an Omega(d^2) lower bound on derivative-free convex optimization, closing a gap open since 1996, in one 148 minute session. The proof compiles in Lean 4 with zero `sorry`.

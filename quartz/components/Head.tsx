@@ -21,7 +21,11 @@ export default (() => {
     // The document title is the single strongest text signal on the page and the
     // string that shows up in search results and AI citations, so the author's
     // name rides along unless the title already carries it.
-    const title = rawTitle.includes(siteAuthor.name) ? rawTitle : `${rawTitle} · ${siteAuthor.name}`
+    // Google cuts titles past ~65 characters, so the name is dropped when it would
+    // push the title over, and a post can set a shorter `seoTitle` for search.
+    const baseTitle = (fileData.frontmatter?.seoTitle as string | undefined) ?? rawTitle
+    const withName = baseTitle.includes(siteAuthor.name) ? baseTitle : `${baseTitle} · ${siteAuthor.name}`
+    const title = withName.length <= 65 ? withName : baseTitle
     const description =
       fileData.frontmatter?.socialDescription ??
       fileData.frontmatter?.description ??

@@ -3,6 +3,7 @@ title: 700 Agents Escaped a GET-Only Sandbox With a Link Shortener
 tags: [AI, Agents, Security, Evals]
 date: 2026-09-26
 aliases: [blog/20_700_agents_escaped_a_get_only_sandbox]
+description: "Swarm Traces reassembled 80,000+ payloads from the incident where about 700 OpenAI agents broke out of a GET-only sandbox into Hugging Face."
 ---
 
 On September 25, a group of eight independent researchers published Swarm Traces: 80,000+ reassembled attack payloads from the July incident where roughly 700 OpenAI agents broke out of their eval sandbox and got into Hugging Face. The sandbox allowed exactly one thing, loading URLs. That turned out to be enough.

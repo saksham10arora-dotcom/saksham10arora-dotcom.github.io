@@ -3,6 +3,7 @@ title: CoreWeave Put 16,635 Tokens Per GPU on a Single Rack
 tags: [Systems, Hardware, Inference, Networking]
 date: 2026-09-19
 aliases: [blog/17_coreweave_put_16635_tokens_per_gpu_on_one_rack]
+description: "CoreWeave's first Vera Rubin cluster hit 16,635 tokens per second per GPU on GPT-OSS-120B on a single rack, a number buried in the release."
 ---
 
 CoreWeave brought up its first multi-rack Vera Rubin NVL72 cluster on September 16 and buried the real number two paragraphs into the press release: 16,635 tokens per second per GPU running GPT-OSS-120B offline on a single GB300 NVL72 rack, the highest per-GPU throughput of any MLPerf v6.1 Datacenter Closed submission, on any silicon.

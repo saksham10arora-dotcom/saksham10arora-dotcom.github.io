@@ -3,6 +3,7 @@ title: Mistral's Timestral Forecasts a Day Ahead in 10 ms, No GPU
 tags: [Data Science, Time Series, Forecasting, Foundation Models]
 date: 2026-10-19
 aliases: [blog/27_timestral_forecasts_in_10ms_on_a_cpu]
+description: "Mistral's Timestral forecasts a full day ahead from three weeks of 15-minute data in 10 ms on an 8-thread CPU, with no GPU."
 ---
 
 Mistral released Timestral, its first family of time-series foundation models, and the smallest one forecasts a full day ahead from three weeks of 15-minute data in 10 ms on an 8-thread server CPU. The 28M version beats Chronos-2, a model about 4x its size, on two of the three big benchmarks.

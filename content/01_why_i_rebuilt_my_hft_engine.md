@@ -3,6 +3,7 @@ title: Why I Rebuilt My HFT Matching Engine From Scratch and Got 3.3x Faster
 tags: [HFT, Systems, C++, Performance]
 date: 2026-05-10
 aliases: [blog/01_why_i_rebuilt_my_hft_engine]
+seoTitle: "Why I Rebuilt My HFT Matching Engine and Got 3.3x Faster"
 ---
 
 > I had a working order matching engine. 2 million orders. Sub-microsecond latency. It worked. But it was built wrong. Here's how I found out, and what I did about it.

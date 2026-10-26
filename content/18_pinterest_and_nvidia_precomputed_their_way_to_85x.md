@@ -3,6 +3,7 @@ title: Pinterest and NVIDIA Precomputed Their Way to an 85x Speedup
 tags: [Systems, AI Infrastructure, Latency, Caching]
 date: 2026-09-19
 aliases: [blog/18_pinterest_and_nvidia_precomputed_their_way_to_85x]
+description: "Pinterest and NVIDIA got an 85x speedup by precomputing visual representations instead of processing raw images on every request."
 ---
 
 Pinterest and NVIDIA announced a deeper partnership this week, and the headline is "multimodal AI foundation." The actual number is buried in the benchmark section: precomputing visual representations instead of processing raw images on every request cut response startup by 85x and overall latency by 7.3x.

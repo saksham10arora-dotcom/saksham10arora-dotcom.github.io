@@ -3,6 +3,8 @@ title: Grok 4.7 Doubled Its Terminal-Bench Score and Still Lost the Index
 tags: [AI, Benchmarks, LLMs, Systems]
 date: 2026-09-23
 aliases: [blog/19_grok_47_doubled_terminal_bench_still_lost_the_index]
+seoTitle: "Grok 4.7 Doubled Terminal-Bench and Still Lost the Index"
+description: "Grok 4.7 nearly doubled Terminal-Bench 4.0, from 20.3% to 38.0%, and still lost ground on the overall index. What the jump means."
 ---
 
 xAI shipped Grok 4.7 on September 21, and the number that matters isn't the price tag, it's Terminal-Bench 4.0: 20.3% for Grok 4.6 (xhigh) to 38.0% for Grok 4.7 (xhigh). Almost double, on the same $2/$6 per million token pricing as the model it replaced.
