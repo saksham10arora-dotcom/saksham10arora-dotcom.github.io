@@ -36,6 +36,7 @@ Hey. I'm **Saksham Arora**, a data scientist, quant researcher and AI engineer. 
 
 ## Things I've shipped lately
 
+- **[ECX: everything claude codex](https://github.com/saksham10arora-dotcom/everything-claude-codex)** is my whole Claude Code and Codex setup, open source: both agents share one memory, the vault answers from my phone with the laptop shut, and a doctor checks every part. The 11 lessons behind it: [[28_11_months_in_claude_code_11_lessons|Everything Claude Codex]].
 - **[Margin](https://saksham.digital/margin)** sits beside a lecture on Udemy, Coursera or YouTube and writes the study notes into Obsidian while you watch, with the code run. The story behind one bug: [[22_the_lecturers_head_was_a_slide|The Lecturer's Head Was a Slide]].
 - **[Latch](https://saksham.digital/latch)** pins a lecture or a PDF in full screen so Escape does nothing.
 - **Claude Code mods**: [teach-me](https://github.com/saksham10arora-dotcom/claude-teach-me), [vhs](https://github.com/saksham10arora-dotcom/claude-vhs), [frugal](https://github.com/saksham10arora-dotcom/claude-frugal) and [lofi](https://github.com/saksham10arora-dotcom/claude-lofi), plus [awesome-claude-mods](https://github.com/saksham10arora-dotcom/awesome-claude-mods), a list of the ones worth installing.
@@ -43,6 +44,7 @@ Hey. I'm **Saksham Arora**, a data scientist, quant researcher and AI engineer. 
 
 ## Latest posts
 
+- [[28_11_months_in_claude_code_11_lessons|Everything Claude Codex: 11 Lessons From 11 Months in Claude Code]]
 - [[24_diffusion_cant_fake_a_tick_yet|Jane Street Tried Diffusion on Market Data and 88% of the Samples Blew Past 8 Sigma]]
 - [[21_ember_1_cut_40_percent_of_the_tokens|Ember-1 Cut 40% of the Tokens and Kept the Score]]
 - [[19_grok_47_doubled_terminal_bench_still_lost_the_index|Grok 4.7 Doubled Its Terminal-Bench Score and Still Lost the Index]]
