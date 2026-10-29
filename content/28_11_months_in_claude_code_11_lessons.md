@@ -42,7 +42,7 @@ I told Claude, in writing, never to put em dashes in anything I publish. They're
 
 A 16-line hook that flags them the moment a draft is saved did what every reminder couldn't. If something has to happen every single time, it belongs in a hook, not in a sentence the model may or may not weigh.
 
-**In ECX:** 17 hooks, including the AI-tell guard.
+**In ECX:** 19 hooks, including the AI-tell guard.
 
 ## 4. Test your guards with the real payload
 
@@ -78,7 +78,7 @@ Claude would tell me a task was done. Then I'd look: nothing committed, nothing 
 
 My rule now: no "done" without proof. A test output, a live URL, or a commit hash. `/ship` commits, pushes and reports the proof in one pass.
 
-**In ECX:** `/ship`.
+**In ECX:** `/ship`, plus a hook that runs your tests before Claude Code or Codex can say done, and sends the agent back with the failing output if they fail.
 
 ## 8. Two agents beat one, if they share a brain
 
