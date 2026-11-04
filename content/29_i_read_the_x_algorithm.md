@@ -13,6 +13,14 @@ xAI open-sourced the code behind X's For You feed. Most of what I saw online abo
 
 This is what I found, read at commit `b220448` from 3 November 2026. Every number below is from the code, with the file it lives in.
 
+![The xai-org/x-algorithm GitHub repository at commit b220448, with 34.1k stars and 5.5k forks](assets/29-repo.png)
+*The repo. 2,352 files of Rust, JAX and Scala, with a commit almost every weekday.*
+
+Before the numbers, here's the whole path a feed takes. Every time you open For You, this runs from left to right:
+
+![Diagram of the For You pipeline: candidate sources, filters, Phoenix ranker, weighted sum, vm-ranker, visibility filtering, then your feed](assets/29-pipeline.png)
+*One feed request, start to finish. Most of this post is about the green and amber boxes.*
+
 ## How a post gets scored
 
 Every post you could see gets one score:
@@ -42,6 +50,9 @@ The model predicts the chance you'll like, reply, repost, share, mute, report an
 | Mute author | -58.8 |
 | Report | **-234** |
 
+![Excerpt of home-mixer/params/param.rs showing FavoriteWeight 0.66, ReplyWeight 5.0, the bidirectional reply boost 15.0, RetweetWeight 1.0, ShareViaCopyLinkWeight 20.0, QuoteWeight 5.0 and ReportWeight -234.0](assets/29-weights.png)
+*The actual lines, from the file X syncs from production.*
+
 One thing to get right before reading too much into this table. The weights multiply your *predicted chance* of doing something, not counts. Reports are more than 1,000 times rarer than likes, so a report needs a huge weight just to move the ranking at all. "One report cancels 354 likes" is the wrong reading, and X even added a code comment saying so.
 
 The right reading: X values conversation and sharing far more than approval. A reply is worth about 7.6 likes. A copied link is worth about 30.
@@ -52,11 +63,17 @@ There is one extra parameter, `bidirectional_follow_reply_weight_boost = 15`. If
 
 So **one reply from a mutual is worth about 30 likes.**
 
+![Excerpt of xai-value-model/inputs.rs: the boost applies only when the post is not a reply, not a retweet, and the author is a mutual follow](assets/29-mutual.png)
+*The whole eligibility rule is one line: original post, and you follow each other.*
+
 X documented the rollout in `docs/BIDIRECTIONAL_BOOST_CHANGE.md`. They A/B tested boosts of 5, 10, 15 and 20 starting 10 July 2026, shipped 20 on 13 July, then cut it to 15 on 24 July after people complained they were missing World Cup posts from accounts they didn't follow.
 
 ## One negative prediction sinks a post
 
 This is easy to miss. In `xai-value-model/scoring.rs`, a post with a positive total gets a small constant added. A post with a negative total gets squashed into a tiny range below that constant.
+
+![Excerpt of xai-value-model/scoring.rs, offset_score: negative scores are rescaled into a range below the 0.001 offset, positive scores get the offset added](assets/29-squash.png)
+*Positive totals get `+ 0.001`. Negative totals get squeezed in below 0.001.*
 
 So **every post with a negative total ranks below every post with a positive total**, no matter how close to zero it is. If the model thinks a viewer is likely to mute you or hit "not interested", your post is effectively gone from their feed.
 
@@ -67,6 +84,9 @@ These adjustments don't run where the README says. Home-mixer hard-codes them of
 - **Same-author decay.** Your k-th post in one feed load is multiplied by `0.75 × 0.5^k + 0.25`. Your 1st post keeps 100%, the 2nd 62.5%, the 3rd 44%, and it never drops below 25%.
 - **Out-of-network discount.** Posts from accounts the viewer doesn't follow get ×0.75. So do replies and reposts from accounts they do follow.
 - **Diversity rerank.** Out of the top 150, a determinantal point process (θ = 0.65) trades a little score for posts that look less alike, using cosine similarity of post embeddings. Ten near-identical takes on the same news story won't all make it.
+
+![Bar chart: a single author's 1st post keeps 100% of its score, the 2nd 62%, 3rd 44%, 4th 34%, 5th 30%, 6th 27%, with a floor at 25%](assets/29-author-decay.png)
+*Posting a burst doesn't multiply your reach. Each extra post in one feed keeps less of its score.*
 
 There is no time decay in the score. Freshness comes from a hard 48-hour cutoff and from post age being one of the model's inputs.
 
@@ -80,6 +100,14 @@ There is no time decay in the score. Freshness comes from a hard 48-hour cutoff 
 - it has **fewer than 200 home-feed views**
 
 To pick which one, X uses Thompson sampling. For each candidate it draws a like rate from `Beta(0.75 + likes, 49.25 + views − likes)`, which starts at a 1.5% prior. It keeps the top 2 draws and takes whichever the model scores higher.
+
+![Excerpt of home-mixer/scorers/author_cold_start.rs, sample_reward: n is home views, x is likes, and a Beta distribution with alpha0 plus likes and beta0 plus non-liking views is sampled](assets/29-thompson-code.png)
+*The bandit, in 13 lines.*
+
+Here's what that looks like for two example posts with the same 150 views:
+
+![Three Beta distributions: the prior centred near 1.5%, a post with 2 likes in 150 views centred near 1%, and a post with 9 likes in 150 views centred near 4.5%](assets/29-thompson.png)
+*The post with 9 likes almost always draws a higher number, so it almost always wins the slot. The post with no data yet still has a long tail, which is how new posts get a chance.*
 
 In plain words: **your likes per view in the first 2 hours decide whether X tests you on new people.**
 
@@ -102,6 +130,9 @@ Retrieval, the step that finds posts from people you don't follow, is a two-towe
 After ranking, `visibility-filtering` checks every post. Some rules drop a post for everyone: suspended authors, spam labels, legal takedowns, and "Freedom of Speech, Not Reach" labels for hateful conduct, violent speech, abuse and civic integrity.
 
 A second set only applies when the post would reach someone who doesn't follow the author. These include account labels like `SPAM_HIGH_RECALL`, `IMPERSONATION_HIGH_PRECISION`, `ABUSIVE_HIGH_RECALL` and **`DO_NOT_AMPLIFY`**. Followers still see the post. Strangers never do.
+
+![GitHub view of visibility-filtering/rules/levels.rs: the OON_AUTHOR_LABEL_DROPS list, ending with DO_NOT_AMPLIFY_USER_LABEL_DROP_UNSPECIFIED](assets/29-oon-drops.png)
+*The list of account labels that block recommendations to non-followers. `DO_NOT_AMPLIFY` is the last one.*
 
 That's the "not banned, just not recommended" mechanism, written down in `visibility-filtering/rules/levels.rs`. The labels come from LLM classifiers running on Grok 4.1 Fast (the prompts aren't published), image and video models, and offline account-scoring jobs. X's [Under the Hood](https://x.com/i/jf/under_the_hood) page shows which labels are on your own account.
 
