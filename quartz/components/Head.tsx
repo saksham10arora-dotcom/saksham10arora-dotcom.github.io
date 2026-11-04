@@ -55,11 +55,15 @@ export default (() => {
 
     const pageKind = classifyPage(fileData)
     const isArticle = pageKind === "article"
+    // Social cards and importers (Medium, dev.to) read og:title and the JSON-LD
+    // headline as the article's name, so articles give them the full post title,
+    // not the shortened search title with the author's name appended.
+    const socialTitle = isArticle ? rawTitle : title
     const tags = (fileData.frontmatter?.tags ?? []) as string[]
     const publishedDate = fileData.dates?.created
     const rssUrl = `${siteBaseUrl(cfg)}/index.xml`
     const jsonLd = serializeJsonLd(
-      buildJsonLd(cfg, fileData, { title, description, image: ogImageDefaultPath }),
+      buildJsonLd(cfg, fileData, { title: socialTitle, description, image: ogImageDefaultPath }),
     )
 
     // Raw-markdown mirror of this page, emitted by the RawMarkdown plugin. Only
@@ -95,7 +99,7 @@ export default (() => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <meta name="og:site_name" content={cfg.pageTitle}></meta>
-        <meta property="og:title" content={title} />
+        <meta property="og:title" content={socialTitle} />
         <meta property="og:type" content={isArticle ? "article" : "website"} />
         {isArticle && (
           <>
@@ -116,7 +120,7 @@ export default (() => {
             is plain crawlable text for anything that reads meta tags. */}
         <meta name="twitter:label1" content="Written by" />
         <meta name="twitter:data1" content={siteAuthor.name} />
-        <meta name="twitter:title" content={title} />
+        <meta name="twitter:title" content={socialTitle} />
         <meta name="twitter:description" content={description} />
         <meta property="og:description" content={description} />
         <meta property="og:image:alt" content={description} />
