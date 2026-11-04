@@ -13,6 +13,9 @@ Claude and Codex share one memory. I tell one of them something, and the other a
 
 None of this is one product. It's a stack of small pieces I added over five months, mostly because something annoyed me. Here's all of it, including the parts that broke.
 
+![Diagram: the phone (Codex in ChatGPT, Claude Code on the web) and the MacBook vault both connect only through a private GitHub repo; on the Mac, Claude Code and Codex share context through agent-sync](assets/25-arch.png)
+*The whole system on one screen. Everything below is one of these boxes.*
+
 ### 1. The vault: everything is a markdown file
 
 It's an Obsidian vault. Trackers, deadlines, lecture notes, people I meet, half-baked ideas. All plain markdown, all in git.
@@ -20,6 +23,9 @@ It's an Obsidian vault. Trackers, deadlines, lecture notes, people I meet, half-
 One rule runs the whole thing: **capture first, organize later.** Anything new goes into `inbox/`. I never decide where something belongs while I'm capturing it. An agent files it later.
 
 Everything else has a home:
+
+![Terminal-style list of the vault's folders with note counts: inbox 1, daily 16, studies 40, projects 132, personal 42, content 60, research 168, wiki 6, archive 821](assets/25-tree.png)
+*Real counts. The inbox stays near empty because an agent files it, and the archive is where raw captures go after `/wiki` compiles them.*
 
 - `daily/` for brain dumps, `studies/` for courses and trackers, `projects/` for builds, `personal/` for people, internships and applications, `content/` for posts, `research/` for deep dives
 - `wiki/`: when the inbox fills up, `/wiki` compiles the raw captures into linked articles (Karpathy's LLM-wiki idea) and moves the originals to `archive/`
@@ -37,6 +43,9 @@ Claude Code starts every session already knowing my situation, because three thi
 - 60+ memory files: how I like to work, corrections I've made ("don't suggest X again"), the state of every project.
 - Weekly summaries of every past session, written automatically when a session ends.
 
+![Four stages of a session and the hooks that fire at each: session start restores context and sorts the inbox; before every message agent-sync runs; before a tool runs, dangerous commands are blocked, read-only actions auto-approved and em dashes flagged; after every reply the session is archived and synced to GitHub](assets/25-hooks.png)
+*Hooks fire at four fixed points, so nothing depends on me remembering.*
+
 Hooks do the loading, so I never paste context. And 34 skills turn repeat jobs into one word: `/daily` for the morning brief, `/opps` for internships, `/content` for posts like this one.
 
 ### 3. Search: three retrievers and a router
@@ -46,6 +55,9 @@ Reading every note on every question doesn't scale, so the vault is indexed thre
 - **ChromaDB**: semantic search ("notes about latency")
 - **LightRAG**: relationship search ("what connects my HFT engine to my IMC Prosperity strategy")
 - **CLIP**: images, so screenshots and lecture slides are searchable too
+
+![A question goes to a router MCP server, which sends it to ChromaDB for meaning, LightRAG for relationships between ideas, or CLIP for images and slides](assets/25-router.png)
+*One question in, the right index out.*
 
 A small router server picks the right one per question. All of them run as MCP servers, so any agent can use them, and they re-index every night: about 11,000 chunks of my own notes. On top of that, a knowledge graph of the whole vault answers structural questions like "how does X relate to Y" without grepping 2,000 files.
 

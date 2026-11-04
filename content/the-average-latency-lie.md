@@ -8,6 +8,9 @@ seoTitle: "The Average Latency Lie: 100 LLM API Calls on Benchmarking"
 
 > I benchmarked an LLM API 100 times. The mean said 1.7 seconds. The median said 2.2 seconds. If that ordering looks impossible to you, good. That instinct is the whole point of this post.
 
+![Histogram of time to first token with two clusters, about 30 requests near 0.2 seconds and 70 near 2.2 seconds; the 1.71 second mean falls in the empty gap and the 2.20 second median sits in the larger cluster](assets/lat-bimodal.png)
+*The whole post in one picture. The mean describes a request that never happened.*
+
 ---
 
 ## The number everyone reports is the wrong one
@@ -26,18 +29,8 @@ LLM APIs deserve the same treatment. So I built a tool that does it: [llm-bench]
 
 The first real benchmark I ran with the finished tool was 100 requests to Groq's free tier, llama-3.3-70b-versatile, sequential, after warmup:
 
-```
-llm-bench  openai/llama-3.3-70b-versatile
-                 (n=100)
-+--------+-------+-------+-------+-------+
-| Metric |   p50 |   p95 |   p99 |  mean |
-+--------+-------+-------+-------+-------+
-| TTFT   | 2.20s | 2.32s | 2.33s | 1.71s |
-| Total  | 2.28s | 2.39s | 2.41s | 1.79s |
-| ITL    |   0ms |  10ms |  13ms |   2ms |
-+--------+-------+-------+-------+-------+
-Throughput: 536.1 tok/s  |  Cost/call: $0.000058  |  Errors: 0/100
-```
+![llm-bench terminal output for 100 requests to Groq llama-3.3-70b: TTFT p50 2.20s, p95 2.32s, p99 2.33s, mean 1.71s; throughput 536.1 tokens per second; 0 errors](assets/lat-terminal.png)
+*The real output. The mean (red) is half a second below the median (blue).*
 
 Look at the TTFT row. The mean is 1.71s. The median is 2.20s. The mean is below the median by half a second.
 
@@ -54,13 +47,21 @@ A mean-only benchmark would have printed "1.7s" and moved on. You would have shi
 
 ## What llm-bench measures, and why
 
-Every measurement decision in the tool is documented in the README, because a benchmark you cannot interrogate is just a vibe with a table. The short version:
+Every measurement decision in the tool is documented in the README, because a benchmark you cannot interrogate is just a vibe with a table. First, what one request actually looks like:
+
+![Timeline of one streamed LLM request: connect, queue and prefill make up time to first token, then token bars with uneven gaps between them make up decode; total ends at the last token, and throughput is tokens minus one divided by total minus TTFT](assets/lat-timeline.png)
+*Every metric below is a different slice of this one timeline.*
+
+The short version:
 
 **TTFT, separately from total latency.** Time to first token is what a user perceives as "the app is responding." It deliberately includes connection setup, queueing, and prefill, because the user waits through all of it. Total latency ends at the last content chunk, not at trailing usage frames or connection teardown.
 
 **Real percentiles, nearest-rank.** No interpolation, no smoothing. With n=100, p99 is your second-worst request, an actual observation, not an invented value between two observations. The tool warns you below n=100 because p99 of 5 samples is just the max wearing a costume.
 
 **Inter-token latency from pooled raw gaps.** Every gap between consecutive chunks is timestamped and pooled across all requests, then percentiles are computed on the raw gaps. The tempting shortcut is to average gaps per request first. That shortcut destroys exactly the signal you want: one 500ms stall inside an otherwise smooth stream disappears into that request's average. Pooling keeps it visible at p99.
+
+![Two panels from the same 100 gaps: pooled and sorted, two 500 ms spikes give a p99 of 500 ms; averaged per request first, the requests show 2.0 ms and 21.9 ms, about 12 ms on average](assets/lat-pooled.png)
+*This is the exact case from the test suite. The 500 ms stalls are real, but averaging per request reports about 12 ms.*
 
 **Throughput as decode rate.** Tokens per second is computed as (completion_tokens - 1) / (total - TTFT). Including TTFT in the denominator blends queueing and prefill into a number that claims to be generation speed. Groq's 536 tok/s above is decode rate, the speed at which tokens actually streamed once they started.
 
@@ -101,8 +102,14 @@ llm-bench --provider anthropic --model claude-sonnet-4-6 \
 
 Repo: [github.com/saksham10arora-dotcom/llm-bench](https://github.com/saksham10arora-dotcom/llm-bench)
 
+![The llm-bench repository on GitHub](assets/lat-repo.png)
+*MIT licensed, with a mock provider so you can run the full pipeline without an API key.*
+
 If you disagree with any measurement decision, the Methodology section of the README is the place to start the argument. That is what it is there for.
 
 ---
 
 **Update (v0.2.0):** llm-bench is now on PyPI. `pip install llm-latency-bench`. Also ships a `--task` flag (`text`, `code`, `pdf`, `image`, `chat`) after feedback from a Sr DS at Meta that task type is upstream of any latency number: the metric profile that matters for batch PDF processing at night is completely different from interactive code gen. The flag adds that context to every benchmark output.
+
+![The llm-latency-bench page on PyPI, version 0.3.0, with pip install llm-latency-bench](assets/lat-pypi.png)
+*Now on PyPI as `llm-latency-bench`.*

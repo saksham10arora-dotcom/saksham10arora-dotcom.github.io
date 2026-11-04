@@ -7,6 +7,9 @@ aliases: [blog/23_gemini_4_argon_same_price_twice_the_bill]
 
 Google launched Gemini 4 Argon yesterday at $2 in and $10 out per million tokens, the exact same list price as GPT-6 Sol. On Artificial Analysis' runs, Argon costs $1.99 per Intelligence Index task. Sol costs $1.05.
 
+![Left: GPT-6 Sol and Gemini 4 Argon have identical list prices, $2 input and $10 output per million tokens. Right: cost per Intelligence Index task is $1.05 for Sol, $1.99 for Argon at the intro price, and $3.98 after the intro price ends](assets/23-receipt.png)
+*Identical price per token, nearly double the price per task. Once the intro price ends, nearly 4×.*
+
 ## Same sticker, different receipt
 
 Argon is a real jump for Google. Artificial Analysis puts it at 53 on their Intelligence Index, level with GPT-6 Astra and 23 points above Gemini 3.1 Pro Preview. Google's own table has it leading 13 of 19 rows. It also ships with a 1M token output limit, up from 64K, which is a wild number for a single response.
@@ -23,6 +26,9 @@ The same breakdown lists output speed at 48.9 tokens/sec for Argon and 77.0 for 
 - at ~0.64x the speed
 - is roughly **3x the wall-clock time per task**
 
+![Bars relative to GPT-6 Sol: Argon uses 1.90 times the tokens per task, takes 1.57 times the seconds per token, and so about 2.99 times the wall-clock time per task](assets/23-3x.png)
+*The two penalties multiply, they don't add.*
+
 That's back-of-envelope, it assumes output tokens dominate, and real latency depends on load. But for an agent loop where every turn waits on the model, 3x is the difference between a tool that feels interactive and one you leave running while you make chai.
 
 ## The other two catches
@@ -31,6 +37,9 @@ That's back-of-envelope, it assumes output tokens dominate, and real latency dep
 2. **You can't use it yet.** It's rolling out to cyber defenders in Google's Fairwind Program first, then paid API customers and AI Ultra subscribers, with no public date.
 
 And it doesn't win everything. Google's own table shows it behind on FrontierSWE v2 (55.0% vs Astra's 65.5%), Terminal-Bench 4.0 (57.4% vs Opus at 66.4%), and OSWorld-2.0 (69.2% vs 72.6%). If your workload is long agentic coding, those are the three rows that matter most.
+
+![Grouped bars: FrontierSWE v2, Argon 55.0% vs GPT-6 Astra 65.5%; Terminal-Bench 4.0, Argon 57.4% vs Claude Opus 66.4%; OSWorld-2.0, Argon 69.2% vs 72.6%](assets/23-loses.png)
+*Leading 13 of 19 rows still leaves these three, and they're the agent ones.*
 
 ## What I'm taking from it
 
