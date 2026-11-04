@@ -53,7 +53,7 @@ The model predicts the chance you'll like, reply, repost, share, mute, report an
 ![Excerpt of home-mixer/params/param.rs showing FavoriteWeight 0.66, ReplyWeight 5.0, the bidirectional reply boost 15.0, RetweetWeight 1.0, ShareViaCopyLinkWeight 20.0, QuoteWeight 5.0 and ReportWeight -234.0](assets/29-weights.png)
 *The actual lines, from the file X syncs from production.*
 
-One thing to get right before reading too much into this table. The weights multiply your *predicted chance* of doing something, not counts. Reports are more than 1,000 times rarer than likes, so a report needs a huge weight just to move the ranking at all. "One report cancels 354 likes" is the wrong reading, and X even added a code comment saying so.
+One thing to get right before reading too much into this table. The weights multiply your *predicted chance* of doing something, not counts. Reports are more than 1,000 times rarer than likes, so a report needs a huge weight just to move the ranking at all. "One report cancels 354 likes" is the wrong reading. X even added a code comment warning against exactly this math (their example says 468 likes).
 
 The right reading: X values conversation and sharing far more than approval. A reply is worth about 7.6 likes. A copied link is worth about 30.
 
@@ -138,7 +138,7 @@ That's the "not banned, just not recommended" mechanism, written down in `visibi
 
 ## What the code settles
 
-- **Premium gets no boost in ranking.** Subscription level only shows up in ads logging and reply controls.
+- **Premium gets no boost in ranking.** There's no Premium weight or multiplier anywhere in the scoring code, and the feed service only logs subscription level. One caveat: the author's tier is part of the account text X feeds into each post's embedding, so the model can see it.
 - **Strangers mass-reporting you does little.** Only actions on posts X actually served in the feed count, and predictions are personalised, so reports mostly affect people who behave like the reporters.
 - **Links aren't penalised by a weight.** Opening a link is +0.2. Link posts lose because people reply to them less.
 
