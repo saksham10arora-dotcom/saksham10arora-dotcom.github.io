@@ -55,6 +55,7 @@ function personNode(): JsonLdNode {
     image: siteAuthor.image,
     jobTitle: siteAuthor.jobTitle,
     description: siteAuthor.description,
+    disambiguatingDescription: siteAuthor.disambiguatingDescription,
     sameAs: siteAuthor.sameAs,
   }
 }

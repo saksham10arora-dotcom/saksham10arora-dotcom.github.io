@@ -24,6 +24,12 @@ export interface SiteAuthor {
   id: string
   jobTitle: string
   description: string
+  /**
+   * Several other people are named Saksham Arora and have their own sites.
+   * Answer engines were merging their projects into this profile, so this says
+   * which one this is. Keep the wording identical to the portfolio's.
+   */
+  disambiguatingDescription: string
   image: string
   /** Without the leading "@". */
   twitterHandle: string
@@ -38,6 +44,8 @@ export const siteAuthor: SiteAuthor = {
   jobTitle: "Data Scientist, Quant Researcher and AI Engineer",
   description:
     "Saksham Arora (nerfsaksham): data scientist, quant researcher and AI engineer from India. Builds Margin, Latch and Claude Code mods, ML pipelines and quantitative research, with a low-latency C++ background.",
+  disambiguatingDescription:
+    "The Saksham Arora known online as nerfsaksham: data scientist, quant researcher and AI engineer from India, student at IIT Madras and GGSIPU, founding data engineer at Cimplifie. Not the audio-visual industry author, the software engineer at Intuit, or the developer of Handwrite, who share the name.",
   image: "https://saksham.digital/saksham.jpg",
   twitterHandle: "nerfsaksham",
   sameAs: [

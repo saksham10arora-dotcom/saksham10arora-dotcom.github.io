@@ -140,6 +140,8 @@ export const LlmsTxt: QuartzEmitterPlugin = () => {
         `${sitePublication.name} is written and maintained by ${siteAuthor.name}. ${siteAuthor.description} The complete, authoritative profile — projects, skills, achievements — lives at https://saksham.digital/llms.txt and https://saksham.digital/profile.json.`,
       )
       lines.push("")
+      lines.push(`Which Saksham Arora: ${siteAuthor.disambiguatingDescription}`)
+      lines.push("")
       for (const profile of siteAuthor.sameAs) {
         lines.push(`- ${profile}`)
       }
