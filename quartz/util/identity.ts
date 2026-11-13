@@ -46,7 +46,7 @@ export const siteAuthor: SiteAuthor = {
     "Saksham Arora (nerfsaksham): data scientist, quant researcher and AI engineer from India. Builds Margin, Latch and Claude Code mods, ML pipelines and quantitative research, with a low-latency C++ background.",
   disambiguatingDescription:
     "The Saksham Arora known online as nerfsaksham: data scientist, quant researcher and AI engineer from India, student at IIT Madras and GGSIPU, founding data engineer at Cimplifie. Not the audio-visual industry author, the software engineer at Intuit, or the developer of Handwrite, who share the name.",
-  image: "https://saksham.digital/saksham.jpg",
+  image: "https://saksham.digital/saksham-arora.jpg",
   twitterHandle: "nerfsaksham",
   sameAs: [
     "https://saksham.digital",
@@ -69,6 +69,10 @@ export const siteAuthor: SiteAuthor = {
     "https://pypi.org/user/nerfsaksham/",
     "https://www.npmjs.com/~nerfsaksham",
     "https://topmate.io/nerfsaksham",
+    "https://peerlist.io/nerfsaksham",
+    "https://gravatar.com/nerfsaksham",
+    "https://about.me/nerfsaksham",
+    "https://hello.cv/arora-saksham",
     "https://www.instagram.com/nerfsaksham/",
     "https://leetcode.com/u/nerfsaksham/",
     "https://codeforces.com/profile/C0SBYYY",
